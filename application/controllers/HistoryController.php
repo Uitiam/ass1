@@ -19,11 +19,10 @@ class HistoryController extends Application
 		$history = array();
 		foreach ($data as $trans)
 		{
-			$history[] = array ('type' => $trans['type'], 'data' => $trans['data'], 'datetime' => $trans['datetime']);
+			$history[] = array ('type' => $trans['type'], 'data' => $trans['data'], 'cost' => $trans['cost'], 'sold' => $trans['sold'], 'datetime' => $trans['datetime']);
 		}
 		$this->data['history'] = $history;
 
 		$this->render();
 	}
-
 }
