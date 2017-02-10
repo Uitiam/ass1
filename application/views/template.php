@@ -18,8 +18,8 @@ if (!defined('APPPATH'))
   <title>Poncho Corp.</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <!-- Bootstrap 3.3.7 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
@@ -37,7 +37,7 @@ if (!defined('APPPATH'))
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="#" class="logo">
+    <a href="/" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>PC</b></span>
       <!-- logo for regular state and mobile devices -->
@@ -74,10 +74,10 @@ if (!defined('APPPATH'))
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
         <!-- Optionally, you can add icons to the links -->
-        <li><a href="#"><i class="fa fa-link"></i><span>Home</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i><span>Parts</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i><span>Assembly</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i><span>History</span></a></li>
+        <li><a href="/"><i class="fa fa-link"></i><span>Home</span></a></li>
+        <li><a href="/parts"><i class="fa fa-link"></i><span>Parts</span></a></li>
+        <li><a href="/assembly"><i class="fa fa-link"></i><span>Assembly</span></a></li>
+        <li><a href="/history"><i class="fa fa-link"></i><span>History</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
       </section>
@@ -87,8 +87,9 @@ if (!defined('APPPATH'))
   <div class="content-wrapper">
     <!-- Main content -->
     <section class="content">
-      <!-- Your Page Content Here -->
+      <div class="row">
       {content}
+      </div>
     </section>
     <!-- /.content -->
   </div>
@@ -107,8 +108,8 @@ if (!defined('APPPATH'))
 
   <!-- jQuery 2.2.3 -->
   <script src="assets/js/jquery-2.2.3.min.js"></script>
-  <!-- Bootstrap 3.3.6 -->
-  <script src="assets/js/bootstrap.min.js"></script>
+  <!-- Bootstrap 3.3.7 -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <!-- AdminLTE App -->
   <script src="assets/js/app.min.js"></script>
   </body>
