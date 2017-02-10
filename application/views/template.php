@@ -87,9 +87,7 @@ if (!defined('APPPATH'))
   <div class="content-wrapper">
     <!-- Main content -->
     <section class="content">
-      <div class="row">
       {content}
-      </div>
     </section>
     <!-- /.content -->
   </div>
