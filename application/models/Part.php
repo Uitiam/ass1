@@ -37,6 +37,7 @@ class Part extends CI_Model {
 	    return $records;
 	}
 
+
 	// retrieve all of the quotes
 	public function all()
 	{
