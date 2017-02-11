@@ -23,7 +23,8 @@ class Parts extends Application
 		$parts = array();
 		foreach ($source as $record)
 		{
-			$parts[] = array ('src' => $record['src'], 'title' => $record['title']);
+            $parts[] = array ('src' => $record['src'], 'title' => $record['title'], 'UID'=> $record['UID'],
+            'CA'=> $record['CA'], 'PlantCode'=>$record['PlantCode'], 'datetime'=>$record['datetime']);
 		}
 		$this->data['parts'] = $parts;
 
