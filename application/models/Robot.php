@@ -2,11 +2,11 @@
 
 class Robot extends CI_Model {
 
-	// The data comes from http://www.quotery.com/top-100-funny-quotes-of-all-time/?PageSpeed=noscript
+    //mock data array
     var $robots = array(
         array('bot'=> 'motley', 'price'=> '25'),
-        array('type'=> 'butler', 'model'=> '100'),
-        array('type'=> 'motley', 'model'=> '25'),
+        array('bot'=> 'butler', 'price'=> '100'),
+        array('bot'=> 'motley', 'price'=> '25'),
 	);
 
 	// Constructor
@@ -15,24 +15,26 @@ class Robot extends CI_Model {
 		parent::__construct();
 	}
 
-	// retrieve a single quote
+    //returns all records matching the $value by default agains the 'type' property
 	public function get($value, $type = 'bot')
 	{
-        records = array()
-        foreach($this->robots as $record){
-            if(records[$type]) == $value){
+        $records = array();
+        foreach($this->robots as $record)
+            if($records[$type] == $value)
                 $records[] = $record;
-            }
-
-            return $records;    
-        }
-		return null;
+        return $records;    
 	}
 
-	// retrieve all of the quotes
+    //returns the total number of robots in stock
+    public function botCount(){
+        return count($this->robots);
+    }
+
+    //returns all the robots
 	public function all()
 	{
 		return $this->robots;
 	}
+
 
 }
