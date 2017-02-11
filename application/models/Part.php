@@ -63,7 +63,7 @@ class Part extends CI_Model {
         return count($parts);
     } 
 
-    //returns all records matching the $value by default agains the 'type' property
+    //returns all records matching the $value by default against the 'type' property
 	public function get($value, $type = 'type')
 	{
         $records = array();
