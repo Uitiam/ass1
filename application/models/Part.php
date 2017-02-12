@@ -79,7 +79,7 @@ class Part extends CI_Model {
     //returns the total number of parts in stock
     public function partCount(){
         return count($this->parts);
-    } 
+    }
 
     //returns all records matching the $value by default against the 'type' property
 	public function get($value, $type = 'type')
