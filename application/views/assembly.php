@@ -36,29 +36,31 @@
 
 
 <!-- Recommended Robot-->
-<div class="col-xs-12 col-md-6 col-lg-6">
-    {robotHead}
-    <div class="thumbnail">
-        <img class="img-responsive img-rounded" src="/assets/img/{src}" title="{title}"/>
-        <div class="caption">
+<div class="col-xs-12 col-md-5 col-lg-5">
+    <div class="container col-xs-12 col-md-12 col-lg-12">
+        {robotHead}
+        <div class="thumbnail">
+            <img class="img-responsive img-rounded" src="/assets/img/{src}" title="{title}"/>
+            <div class="caption">
+            </div>
         </div>
-    </div>
-    {/robotHead}
-    {robotTorso}
-    <div class="thumbnail">
-        <img class="img-responsive img-rounded" src="/assets/img/{src}" title="{title}"/>
-        <div class="caption">
+        {/robotHead}
+        {robotTorso}
+        <div class="thumbnail">
+            <img class="img-responsive img-rounded" src="/assets/img/{src}" title="{title}"/>
+            <div class="caption">
+            </div>
         </div>
-    </div>
-    {/robotTorso}
-    {robotLegs}
-    <div class="thumbnail">
-        <img class="img-responsive img-rounded" src="/assets/img/{src}" title="{title}"/>
-        <div class="caption">
+        {/robotTorso}
+        {robotLegs}
+        <div class="thumbnail">
+            <img class="img-responsive img-rounded" src="/assets/img/{src}" title="{title}"/>
+            <div class="caption">
+            </div>
         </div>
-    </div>
-    {/robotLegs}
-    <div align="right">
-        <button id="{title}" type="button" class="btn btn-success btn-lg">Build Robot</button>
+        {/robotLegs}
+        <div align="right">
+            <button id="{title}" type="button" class="btn btn-success btn-md">Build Robot</button>
+        </div>
     </div>
 </div>
