@@ -52,7 +52,7 @@ class History extends CI_Model {
     //calculate the total cost so far
     public function cost() {
         $sum = 0;
-		$data = $this->data();
+		$data = $this->data;
 		foreach ($data as $trans) {
             $sum += $trans['cost'];
         }
@@ -62,7 +62,7 @@ class History extends CI_Model {
     //calculate the total sales so far
     public function sales() {
         $sum = 0;
-		$data = $this->data();
+		$data = $this->data;
 		foreach ($data as $trans) {
             $sum += $trans['sold'];
         }

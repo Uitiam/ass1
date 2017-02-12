@@ -28,6 +28,8 @@ if (!defined('APPPATH'))
   <link rel="stylesheet" href="assets/css/AdminLTE.min.css">
   <!--  AdminLTE Skins. -->
   <link rel="stylesheet" href="assets/css/skin-green.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body class="hold-transition skin-green sidebar-mini">
@@ -110,5 +112,11 @@ if (!defined('APPPATH'))
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <!-- AdminLTE App -->
   <script src="assets/js/app.min.js"></script>
+  <!-- Landing Page JS -->
+  <script src="assets/js/landing.js"></script>
+  <!-- AJA JS Source -->
+  <script src="assets/js/aja.min.js"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js"></script>
   </body>
 </html>
