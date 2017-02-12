@@ -4,9 +4,9 @@ class Robot extends CI_Model {
 
     //mock data array
     var $robots = array(
-        array('bot'=> 'motley', 'price'=> '25'),
-        array('bot'=> 'butler', 'price'=> '100'),
-        array('bot'=> 'motley', 'price'=> '25'),
+        array('id'=>'1', 'bot'=> 'motley', 'price'=> '25', 'head'=>'m', 'torso'=>'r', 'leg'=>'a'),
+        array('id'=>'2', 'bot'=> 'butler', 'price'=> '100','head'=>'m', 'torso'=>'m', 'leg'=>'m'),
+        array('id'=>'3', 'bot'=> 'motley', 'price'=> '25', 'head'=>'m', 'torso'=>'r', 'leg'=>'a'),
 	);
 
 	// Constructor
@@ -22,7 +22,7 @@ class Robot extends CI_Model {
         foreach($this->robots as $record)
             if($records[$type] == $value)
                 $records[] = $record;
-        return $records;    
+        return $records;
 	}
 
     //returns the total number of robots in stock
