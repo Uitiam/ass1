@@ -19,40 +19,40 @@ if (!defined('APPPATH'))
 		<div class="col-xs-12">
 			<div class="col-xs-12 col-sm-6 col-md-3">
 				<div class="info-box">
-					<span class="info-box-icon bg-aqua"><i class="fa fa-gear"></i>
+					<span class="info-box-icon bg-grey"><i class="fa fa-gear iconCenter"></i>
 					</span>
 					<div class="info-box-content boxcenter">
-					<span class="info-box-text">Number of Parts</span>
+					<span class="info-box-text"><br />Number of Parts</span>
 					<span class="info-box-number boxcenter">{numparts}</span>
 					</div>
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-3">
 				<div class="info-box">
-					<span class="info-box-icon bg-aqua"><i class="fa fa-user"></i>
+					<span class="info-box-icon bg-blue"><i class="fa fa-android iconCenter"></i>
 					</span>
 					<div class="info-box-content boxcenter">
-					<span class="info-box-text">Assembled Robots</span>
+					<span class="info-box-text"><br />Assembled Robots</span>
 					<span class="info-box-number boxcenter">{numbots}</span>
 					</div>
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-3">
 				<div class="info-box">
-					<span class="info-box-icon bg-aqua"><i class="fa fa-dollar"></i>
+					<span class="info-box-icon bg-red"><i class="fa fa-dollar iconCenter"></i>
 					</span>
 					<div class="info-box-content boxcenter">
-					<span class="info-box-text">Total Spent</span>
+					<span class="info-box-text"><br />Total Spent</span>
 					<span class="info-box-number boxcenter">${spent}</span>
 					</div>
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-3">
 				<div class="info-box">
-					<span class="info-box-icon bg-aqua"><i class="fa fa-dollar"></i>
+					<span class="info-box-icon bg-green"><i class="fa fa-dollar iconCenter"></i>
 					</span>
 					<div class="info-box-content boxcenter">
-					<span class="info-box-text">Total Earned</span>
+					<span class="info-box-text"><br />Total Earned</span>
 					<span class="info-box-number boxcenter">${earned}</span>
 					</div>
 				</div>

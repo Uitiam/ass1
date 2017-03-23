@@ -1,4 +1,8 @@
 .boxcenter {
 	text-align: center;
-	vertical-align: middle;
+}
+
+.iconCenter {
+	font-size: 50px; 
+	padding-top: 20%;
 }
