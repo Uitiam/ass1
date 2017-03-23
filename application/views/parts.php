@@ -41,4 +41,8 @@
         </div>
     </div>
     {/parts}
+    <div align="center">
+        <button id="{title}" type="button" class="btn btn-success btn-sm" style="width: 200px">Build More Parts</button>
+        <button id="{title}" type="button" class="btn btn-danger btn-sm" style="width: 200px">Buy More Parts</button>
+    </div>
 </div>
