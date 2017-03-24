@@ -27,7 +27,7 @@ if (!defined('APPPATH'))
   <!-- Theme style -->
   <link rel="stylesheet" href="assets/css/AdminLTE.min.css">
   <!--  AdminLTE Skins. -->
-  <link rel="stylesheet" href="assets/css/skin-green.min.css">
+  <link rel="stylesheet" href="assets/css/skin-green.css">
   <!-- Custom CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
