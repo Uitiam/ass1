@@ -8,7 +8,7 @@ class Parts extends Application
 	function __construct()
 	{
 		parent::__construct();
-        $this->load->library('session');
+        session_start();
 	}
 
 	/**
@@ -33,13 +33,21 @@ class Parts extends Application
 	}
 
     private function getKey() {
-        $key = $_SESSION['key'];
-        $url = "https://umbrella.jlparry.com/info/whoami?key=" . $key;
-        $response = $this->makeRequest($url);
+        $response = '';
+        $key = -1;
+        if (isset($_SESSION['key'])) {
+            $key = $_SESSION['key'];
+            $url = "https://umbrella.jlparry.com/info/whoami?key=" . $key;
+            $response = $this->makeRequest($url);
+        }
         if (strcmp($response, "zucchini") != 0) {
             //Get password here
-            //$pass = file_get_contents("../data/password.txt");
-            $url = "https://umbrella.jlparry.com/work/registerme/zucchini/" . $pass;
+            $pass = $this->db->query('select * from Company')->result_array();
+            if (empty($pass)) {
+                echo "No password found on server, please set one";
+                return -1;
+            }
+            $url = "https://umbrella.jlparry.com/work/registerme/zucchini/" . $pass[0];
             $key = $this->makeRequest($url);
             $_SESSION['key'] = $key;
         }
@@ -58,7 +66,11 @@ class Parts extends Application
     }
 
     public function build() {
-        $url = "https://umbrella.jlparry.com/work/mybuilds?key=" . $this->getKey();
+        $key = $this->getKey();
+        if ($key == -1) {
+            return;
+        }
+        $url = "https://umbrella.jlparry.com/work/mybuilds?key=" . $key;
         $response = $this->makeRequest($url);
         echo $response;
         $response = json_decode($response);
@@ -72,7 +84,11 @@ class Parts extends Application
     }
 
     public function buy() {
-        $url = "https://umbrella.jlparry.com/work/buybox?key=" . $this->getKey();
+        $key = $this->getKey();
+        if ($key == -1) {
+            return;
+        }
+        $url = "https://umbrella.jlparry.com/work/buybox?key=" . $key;
         $response = $this->makeRequest($url);
         echo $response;
         $response = json_decode($response);
