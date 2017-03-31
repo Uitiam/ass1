@@ -1,3 +1,4 @@
+<script src="assets/js/parts.js"></script>
 <div>
     <div class="page-header">
     <h1>Parts <small>Full catalog</small></h1>
@@ -42,7 +43,7 @@
     </div>
     {/parts}
     <div align="center">
-        <button id="{title}" type="button" class="btn btn-success btn-sm" style="width: 200px">Build More Parts</button>
-        <button id="{title}" type="button" class="btn btn-danger btn-sm" style="width: 200px">Buy More Parts</button>
+        <a href="/parts/build"><button id="{title}" type="button" class="btn btn-success btn-sm" style="width: 200px">Build More Parts</button></a>
+        <a href="/parts/buy"><button id="{title}" type="button" class="btn btn-danger btn-sm" style="width: 200px">Buy More Parts</button></a>
     </div>
 </div>
