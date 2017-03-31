@@ -16,8 +16,8 @@
             <tr>
             <td class="col-xs-1"><p>{type}</p></td>
             <td class="col-xs-3"><p>{data}</p></td>
-            <td class="col-xs-2"><p>Cost: {cost}</p></td>
-            <td class="col-xs-2"><p>Sold price: {sold}</p></td>
+            <td class="col-xs-2"><p>{part}</p></td>
+            <td class="col-xs-2"><p>${sale}</p></td>
             <td class="col-xs-4"><p>{datetime}</p></td>
             </tr>
         {/history}
@@ -39,8 +39,8 @@
             <tr>
             <td class="col-xs-1"><p>{type}</p></td>
             <td class="col-xs-3"><p>{data}</p></td>
-            <td class="col-xs-2"><p>Cost: {cost}</p></td>
-            <td class="col-xs-2"><p>Sold price: {sold}</p></td>
+            <td class="col-xs-2"><p>{part}</p></td>
+            <td class="col-xs-2"><p>${sale}</p></td>
             <td class="col-xs-4"><p>{datetime}</p></td>
             </tr>
         {/shipment}
@@ -62,8 +62,8 @@
             <tr>
             <td class="col-xs-1"><p>{type}</p></td>
             <td class="col-xs-3"><p>{data}</p></td>
-            <td class="col-xs-2"><p>Cost: {cost}</p></td>
-            <td class="col-xs-2"><p>Sold price: {sold}</p></td>
+            <td class="col-xs-2"><p>{part}</p></td>
+            <td class="col-xs-2"><p>${sale}</p></td>
             <td class="col-xs-4"><p>{datetime}</p></td>
             </tr>
         {/purchase}
@@ -85,8 +85,7 @@
             <tr>
             <td class="col-xs-1"><p>{type}</p></td>
             <td class="col-xs-3"><p>{data}</p></td>
-            <td class="col-xs-2"><p>Cost: {cost}</p></td>
-            <td class="col-xs-2"><p>Sold price: {sold}</p></td>
+            <td class="col-xs-2"><p>{part}</p></td>
             <td class="col-xs-4"><p>{datetime}</p></td>
             </tr>
         {/assembly}

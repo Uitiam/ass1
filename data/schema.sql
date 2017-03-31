@@ -1,22 +1,16 @@
-create table if not exists Model (
-    id bigint auto_increment primary key,
-    name char(1) charset utf8
-);
-
-create table if not exists Line (
-    id bigint auto_increment primary key,
-    name char(1) charset utf8
-);
+drop table History;
+drop table Robot;
+drop table Head;
+drop table Torso;
+drop table Legs;
+drop table Company;
 
 create table if not exists Head (
     id bigint auto_increment primary key,
     CACode varchar(128) charset utf8,
     used char(1),
     creationTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    modelId bigint,
-    lineId bigint,
-    constraint `fkhl` foreign key (lineId) references Line(id),
-    constraint `fkhm` foreign key (modelId) references Model(id)
+    model char(1)
 );
 
 create table if not exists Torso (
@@ -24,10 +18,7 @@ create table if not exists Torso (
     CACode varchar(128) charset utf8,
     used char(1),
     creationTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    modelId bigint,
-    lineId bigint,
-    constraint `fktl` foreign key (lineId) references Line(id),
-    constraint `fktm` foreign key (modelId) references Model(id)
+    model char(1)
 );
 
 create table if not exists Legs (
@@ -35,10 +26,7 @@ create table if not exists Legs (
     CACode varchar(128) charset utf8,
     used char(1),
     creationTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    modelId bigint,
-    lineId bigint,
-    constraint `fkll` foreign key (lineId) references Line(id),
-    constraint `fklm` foreign key (modelId) references Model(id)
+    model char(1)
 );
 
 create table if not exists Robot (
@@ -49,8 +37,8 @@ create table if not exists Robot (
     legsId bigint,
     used char(1),
     creationTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    modelId bigint,
-    lineId bigint,
+    model char(1),
+    line char(1),
     constraint `fkrh` foreign key (headId) references Head(id),
     constraint `fkrt` foreign key (torsoId) references Torso(id),
     constraint `fkrl` foreign key (legsId) references Legs(id)
@@ -63,6 +51,18 @@ create table if not exists History (
     partType char(1),
     partId bigint,
     actionType char(1),
+    sale bigint,
     creationTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+create table if not exists Company (
+    id bigint auto_increment primary key,
+    accessToken varchar(128) charset utf8,
+    balance bigint,
+    boxesBought bigint default 0,
+    partsReturned bigint default 0,
+    partsMade bigint default 0,
+    botsBuilt bigint default 0,
+    producing varchar(128) charset utf8,
+    lastActivity TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);

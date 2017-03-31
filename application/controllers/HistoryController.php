@@ -16,29 +16,29 @@ class HistoryController extends Application
 		$this->data['pagebody'] = 'history';
 
 		$all = $this->history->all();
-        $assembly = $this->history->get('Assembly');
-        $purchase = $this->history->get('Purchase');
-        $shipment = $this->history->get('Shipment');
+        $assembly = $this->history->get('b');
+        $purchase = $this->history->get('p');
+        $sell = $this->history->get('s');
 
 		$historyOut = array();
 		foreach ($all as $trans)
-            $historyOut[] = array ('type' => $trans['type'], 'data' => $trans['data'],
-                'cost' => $trans['cost'], 'sold' => $trans['sold'], 'datetime' => $trans['datetime']);
+            $historyOut[] = array ('type' => $trans['actionType'], 'data' => $trans['description'],
+                'part' => $trans['partType'], 'datetime' => $trans['creationTime'], 'sale' => $trans['sale']);
 
 		$assemblyOut = array();
 		foreach ($assembly as $trans)
-            $assemblyOut[] = array ('type' => $trans['type'], 'data' => $trans['data'],
-                'cost' => $trans['cost'], 'sold' => $trans['sold'], 'datetime' => $trans['datetime']);
+            $assemblyOut[] = array ('type' => $trans['actionType'], 'data' => $trans['description'],
+                'part' => $trans['partType'], 'datetime' => $trans['creationTime']);
 
 		$purchaseOut = array();
 		foreach ($purchase as $trans)
-            $purchaseOut[] = array ('type' => $trans['type'], 'data' => $trans['data'],
-                'cost' => $trans['cost'], 'sold' => $trans['sold'], 'datetime' => $trans['datetime']);
+            $purchaseOut[]  = array ('type' => $trans['actionType'], 'data' => $trans['description'],
+                'part' => $trans['partType'], 'datetime' => $trans['creationTime'], 'sale' => $trans['sale']);
 
 		$shipmentOut = array();
-		foreach ($shipment as $trans)
-            $shipmentOut[] = array ('type' => $trans['type'], 'data' => $trans['data'],
-                'cost' => $trans['cost'], 'sold' => $trans['sold'], 'datetime' => $trans['datetime']);
+		foreach ($sell as $trans)
+            $shipmentOut[] = array ('type' => $trans['actionType'], 'data' => $trans['description'],
+                'part' => $trans['partType'], 'datetime' => $trans['creationTime'], 'sale' => $trans['sale']);
 
 		$this->data['history'] = $historyOut;
 		$this->data['shipment'] = $shipmentOut;
