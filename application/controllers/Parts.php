@@ -76,10 +76,19 @@ class Parts extends Application
         $response = json_decode($response);
 
         foreach ($response as $part) {
-            //id
-            //model
-            //piece
-            //stamp
+            if ($part['piece'] == 1) {
+                $tableName = 'Head';
+                $this->db->query('INSERT into ' . $tableName . ' (CACODE, used, creationTime, model) VALUES (' . $this->db->escape($part['id']) . ', f, \
+                    ' . $this->db->escape($part['stamp']) . $this->db->escape($part['model']) . ')');
+            } else if ($part['piece'] == 2) {
+                $tableName = 'Torso';
+                $this->db->query('INSERT into ' . $tableName . ' (CACODE, used, creationTime, model) VALUES (' . $this->db->escape($part['id']) . ', f, \
+                    ' . $this->db->escape($part['stamp']) . $this->db->escape($part['model']) . ')');
+            } else if ($part['piece'] == 3) {
+                $tableName = 'Legs';
+                $this->db->query('INSERT into ' . $tableName . ' (CACODE, used, creationTime, model) VALUES (' . $this->db->escape($part['id']) . ', f, \
+                    ' . $this->db->escape($part['stamp']) . $this->db->escape($part['model']) . ')');
+            }
         }
     }
 
@@ -94,10 +103,19 @@ class Parts extends Application
         $response = json_decode($response);
 
         foreach ($response as $part) {
-            //id
-            //model
-            //piece
-            //stamp
+            if ($part['piece'] == 1) {
+                $tableName = 'Head';
+                $this->db->query('INSERT into ' . $tableName . ' (CACODE, used, creationTime, model) VALUES (' . $this->db->escape($part['id']) . ', f, \
+                    ' . $this->db->escape($part['stamp']) . $this->db->escape($part['model']) . ')');
+            } else if ($part['piece'] == 2) {
+                $tableName = 'Torso';
+                $this->db->query('INSERT into ' . $tableName . ' (CACODE, used, creationTime, model) VALUES (' . $this->db->escape($part['id']) . ', f, \
+                    ' . $this->db->escape($part['stamp']) . $this->db->escape($part['model']) . ')');
+            } else if ($part['piece'] == 3) {
+                $tableName = 'Legs';
+                $this->db->query('INSERT into ' . $tableName . ' (CACODE, used, creationTime, model) VALUES (' . $this->db->escape($part['id']) . ', f, \
+                    ' . $this->db->escape($part['stamp']) . $this->db->escape($part['model']) . ')');
+            }
         }
     }
 
