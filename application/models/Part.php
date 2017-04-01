@@ -5,6 +5,13 @@
  */
 class Part extends CI_Model {
 
+    var $query = 'select CACode, used, creationTime, concat(model, 1) as fullModel From Head
+        union select CACode, used, creationTime, concat(model, 2) as fullModel From Torso
+        union select CACode, used, creationTime, concat(model, 3) as fullModel From Legs;';
+
+    var $parts = array();
+
+    /*
     //mock data array
     var $parts = array(
         array('model'=> 'A', 'part'=> 'a1', 'type' => 1,
@@ -69,6 +76,7 @@ class Part extends CI_Model {
             'UID' => 117, 'CA'=>4584, 'PlantCode'=> 'P112', 'datetime'=> '14:49:26 09-02-2017',
             'src'=>'parts/w3.jpeg', 'stock' => 1, 'title' =>'W 3 Part')
     );
+     */
 
     // Constructor
     public function __construct()
@@ -76,14 +84,20 @@ class Part extends CI_Model {
         parent::__construct();
     }
 
+    private function updateArray() {
+        $parts = $this->db->query($this->query)->result_array();
+    }
+
     //returns the total number of parts in stock
     public function partCount(){
+        $this->updateArray();
         return count($this->parts);
     }
 
     //returns all records matching the $value by default against the 'type' property
     public function get($value, $type = 'type')
     {
+        $this->updateArray();
         $records = array();
         foreach ($this->parts as $record)
             if ($record[$type] == $value)
@@ -94,6 +108,7 @@ class Part extends CI_Model {
     //returns all the parts
     public function all()
     {
+        $this->updateArray();
         return $this->parts;
     }
 
