@@ -67,7 +67,7 @@ class Parts extends Application
     public function build() {
         $key = $this->getKey();
         if ($key == -1) {
-            return json_encode("No password found on server, please set one");
+            return json_encode(array("msg" => "No password found on server, please set one"));
         }
         $url = "https://umbrella.jlparry.com/work/mybuilds?key=" . $key;
         $response = $this->makeRequest($url);
@@ -89,13 +89,13 @@ class Parts extends Application
                     ' . $this->db->escape($part['stamp']) . ', ' . $this->db->escape($part['model']) . ')');
             }
         }
-        return json_encode("Request finished successfully");
+        return json_encode(array("msg" => "Request finished successfully"));
     }
 
     public function buy() {
         $key = $this->getKey();
         if ($key == -1) {
-            return json_encode("No password found on server, please set one");
+            return json_encode(array("msg" => "No password found on server, please set one"));
         }
         $url = "https://umbrella.jlparry.com/work/buybox?key=" . $key;
         $response = $this->makeRequest($url);
@@ -117,7 +117,7 @@ class Parts extends Application
                     ' . $this->db->escape($part['stamp']) . ', ' . $this->db->escape($part['model']) . ')');
             }
         }
-        return json_encode("Request finished successfully");
+        return json_encode(array("msg" => "Request finished successfully"));
     }
 
 }
