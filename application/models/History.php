@@ -54,4 +54,54 @@ class History extends CI_Model {
         }
         return $sum;
     }
+
+    //the following functions are helpers for adding the respective history records
+    //a good description candidate is the CA code of the part
+    public function addBuy($partType, $partId, $price, $user = "Worker", $description = ""){
+        $ePt = $this->db->escape($partType);
+        $ePi = $this->db->escape($partId);
+        $ePr = $this->db->escape($price);
+        $eUs = $this->db->escape($user);
+        $eDc = $this->db->escape($description);
+        $sql = "insert into History(actionType, partType, partId, sale, user, description) values
+                    ('p', $ePt, $ePi, $ePr, $eUs, $eDc,)";
+        $this->db->query($sql);
+        return $this->db->affected_rows();
+    }
+
+    public function addSell($caCode, $partType, $partId, $price, $user = "Worker", $description = ""){
+        $ePt = $this->db->escape($partType);
+        $ePi = $this->db->escape($partId);
+        $ePr = $this->db->escape($price);
+        $eUs = $this->db->escape($user);
+        $eDc = $this->db->escape($description);
+        $sql = "insert into History(actionType, partType, partId, sale, user, description) values
+                    ('s', $ePt, $ePi, $ePr, $eUs, $eDc,)";
+        $this->db->query($sql);
+        return $this->db->affected_rows();
+    }
+
+    public function addBuild($caCode, $partType, $partId, $price, $user = "Supervisor", $description = ""){
+        $ePt = $this->db->escape($partType);
+        $ePi = $this->db->escape($partId);
+        $ePr = $this->db->escape($price);
+        $eUs = $this->db->escape($user);
+        $eDc = $this->db->escape($description);
+        $sql = "insert into History(actionType, partType, partId, sale, user, description) values
+                    ('b', $ePt, $ePi, $ePr, $eUs, $eDc,)";
+        $this->db->query($sql);
+        return $this->db->affected_rows();
+    }
+
+    public function addRecycle($caCode, $partType, $partId, $price, $user = "Worker", $description = ""){
+        $ePt = $this->db->escape($partType);
+        $ePi = $this->db->escape($partId);
+        $ePr = $this->db->escape($price);
+        $eUs = $this->db->escape($user);
+        $eDc = $this->db->escape($description);
+        $sql = "insert into History(actionType, partType, partId, sale, user, description) values
+                    ('r', $ePt, $ePi, $ePr, $eUs, $eDc,)";
+        $this->db->query($sql);
+        return $this->db->affected_rows();
+    }
 }
