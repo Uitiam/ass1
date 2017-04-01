@@ -1,3 +1,4 @@
+<script src="assets/js/parts.js"></script>
 <div>
     <div class="page-header">
     <h1>Parts <small>Full catalog</small></h1>
@@ -41,4 +42,8 @@
         </div>
     </div>
     {/parts}
+    <div align="center">
+        <button id="{title}" type="button" onclick="build()" class="btn btn-success btn-sm" style="width: 200px">Build More Parts</button>
+        <button id="{title}" type="button" onclick="buy()" class="btn btn-danger btn-sm" style="width: 200px">Buy More Parts</button>
+    </div>
 </div>

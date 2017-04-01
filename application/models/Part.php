@@ -6,7 +6,7 @@
 class Part extends CI_Model {
 
     //mock data array
-	var $parts = array(
+    var $parts = array(
         array('model'=> 'A', 'part'=> 'a1', 'type' => 1,
             'UID' => 100, 'CA'=>4567, 'PlantCode'=> 'P112', 'datetime'=> '14:49:26 09-02-2017',
             'src'=>'parts/a1.jpeg', 'stock' => 1, 'title' =>'A 1 Part'),
@@ -68,13 +68,13 @@ class Part extends CI_Model {
         array('model'=> 'W', 'part'=> 'w3', 'type' => 3,
             'UID' => 117, 'CA'=>4584, 'PlantCode'=> 'P112', 'datetime'=> '14:49:26 09-02-2017',
             'src'=>'parts/w3.jpeg', 'stock' => 1, 'title' =>'W 3 Part')
-	);
+    );
 
-	// Constructor
-	public function __construct()
-	{
-		parent::__construct();
-	}
+    // Constructor
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     //returns the total number of parts in stock
     public function partCount(){
@@ -82,19 +82,19 @@ class Part extends CI_Model {
     }
 
     //returns all records matching the $value by default against the 'type' property
-	public function get($value, $type = 'type')
-	{
+    public function get($value, $type = 'type')
+    {
         $records = array();
-		foreach ($this->parts as $record)
+        foreach ($this->parts as $record)
             if ($record[$type] == $value)
                 $records[] = $record;
-	    return $records;
-	}
+        return $records;
+    }
 
     //returns all the parts
-	public function all()
-	{
-		return $this->parts;
-	}
+    public function all()
+    {
+        return $this->parts;
+    }
 
 }
