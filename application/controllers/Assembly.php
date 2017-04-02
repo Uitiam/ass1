@@ -39,13 +39,27 @@ class Assembly extends Application
         {
             $legs[] = array ('id' => $record['id'], 'CACode' => $record['CACode'], 'src' => '/parts/'.$record['fullModel'].'.jpeg', 'title' => $record['fullModel']);
         }
+
+        $noPart[] = array ('id' => 0, 'src'=>"/parts/none.jpg", 'title' =>"/parts/none.jpg");
         $this->data['heads'] = $heads;
         $this->data['torso'] = $torso;
         $this->data['legs'] = $legs;
 
-        $this->data['robotHead'] = array($heads[0]);
-        $this->data['robotTorso'] = array($torso[0]);
-        $this->data['robotLegs'] = array($legs[0]);
+        if(!empty($heads)){
+            $this->data['robotHead'] = array($heads[0]);
+        } else {
+            $this->data['robotHead'] = $noPart;
+        }
+        if(!empty($torso)){
+            $this->data['robotTorso'] = array($torso[0]);
+        } else {
+            $this->data['robotTorso'] = $noPart;
+        }
+        if(!empty($legs)){
+            $this->data['robotLegs'] = array($legs[0]);
+        } else {
+            $this->data['robotLegs'] = $noPart;
+        }
         $this->render();
     }
 
