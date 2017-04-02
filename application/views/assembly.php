@@ -8,6 +8,7 @@
                     <div align="center">
                         <button id="{src}" type="button" class="useHead btn btn-success btn-sm" style="width: 90px" title = "{title}">Use</button>
                         <button id="{src}" type="button" class="returnPart btn btn-danger btn-sm" style="width: 90px" title = "{id}">Return</button>
+
                     </div>
                 </div>
             {/heads}
@@ -20,6 +21,7 @@
                     <div align="center">
                         <button id="{src}" type="button" class="useTorso btn btn-success btn-sm" style="width: 90px" title = "{title}">Use</button>
                         <button id="{src}" type="button" class=" returnPart btn btn-danger btn-sm" style="width: 90px" title = "{id}">Return</button>
+
                     </div>
                 </div>
             {/torso}
@@ -32,6 +34,7 @@
                     <div align="center">
                         <button id="{src}" type="button" class="useLegs btn btn-success btn-sm" style="width: 90px" title = "{title}">Use</button>
                         <button id="{src}" type="button" class="returnPart btn btn-danger btn-sm" style="width: 90px" title = "{id}">Return</button>
+
                     </div>
                 </div>
             {/legs}

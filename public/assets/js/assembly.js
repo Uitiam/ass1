@@ -1,7 +1,6 @@
 $(document).ready(function(){
     $(".useHead").click(function(){
 
-
         //change src
         $("#botHead").attr('src', "/assets/img/" + this.id);
         //change title
@@ -40,6 +39,7 @@ $(document).ready(function(){
         console.log("BUILD BOT\n");
         //use parts
         //buildBot
+
 
     });
 });

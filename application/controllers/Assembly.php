@@ -53,7 +53,7 @@ class Assembly extends Application
      *Return function
      */
      public function returnPart($code){
-         echo "<script>console.log('return Parts')</script>";
+         
      }
 
 }
