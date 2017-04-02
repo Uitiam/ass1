@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class HistoryController extends Application
+class History extends Application
 {
 
     function __construct()
@@ -15,10 +15,10 @@ class HistoryController extends Application
         // this is the view we want shown
         $this->data['pagebody'] = 'history';
 
-        $all = $this->history->all();
-        $assembly = $this->history->get('b');
-        $purchase = $this->history->get('p');
-        $sell = $this->history->get('s');
+        $all = $this->historyModel->all();
+        $assembly = $this->historyModel->get('b');
+        $purchase = $this->historyModel->get('p');
+        $sell = $this->historyModel->get('s');
 
         $historyOut = array();
         foreach ($all as $trans)

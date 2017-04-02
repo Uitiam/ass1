@@ -1,6 +1,6 @@
 <?php
 
-class History extends CI_Model {
+class HistoryModel extends CI_Model {
 
     // Constructor
     public function __construct()
@@ -59,48 +59,48 @@ class History extends CI_Model {
     //a good description candidate is the CA code of the part
     public function addBuy($partType, $partId, $price, $user = "Worker", $description = ""){
         $ePt = $this->db->escape($partType);
-        $ePi = $this->db->escape($partId);
+        $ePi = $partId;
         $ePr = $this->db->escape($price);
         $eUs = $this->db->escape($user);
         $eDc = $this->db->escape($description);
         $sql = "insert into History(actionType, partType, partId, sale, user, description) values
-                    ('p', $ePt, $ePi, $ePr, $eUs, $eDc,)";
+                    ('p', $ePt, $ePi, $ePr, $eUs, $eDc)";
         $this->db->query($sql);
         return $this->db->affected_rows();
     }
 
     public function addSell($caCode, $partType, $partId, $price, $user = "Worker", $description = ""){
         $ePt = $this->db->escape($partType);
-        $ePi = $this->db->escape($partId);
+        $ePi = $partId;
         $ePr = $this->db->escape($price);
         $eUs = $this->db->escape($user);
         $eDc = $this->db->escape($description);
         $sql = "insert into History(actionType, partType, partId, sale, user, description) values
-                    ('s', $ePt, $ePi, $ePr, $eUs, $eDc,)";
+                    ('s', $ePt, $ePi, $ePr, $eUs, $eDc)";
         $this->db->query($sql);
         return $this->db->affected_rows();
     }
 
     public function addBuild($caCode, $partType, $partId, $price, $user = "Supervisor", $description = ""){
         $ePt = $this->db->escape($partType);
-        $ePi = $this->db->escape($partId);
+        $ePi = $partId;
         $ePr = $this->db->escape($price);
         $eUs = $this->db->escape($user);
         $eDc = $this->db->escape($description);
         $sql = "insert into History(actionType, partType, partId, sale, user, description) values
-                    ('b', $ePt, $ePi, $ePr, $eUs, $eDc,)";
+                    ('b', $ePt, $ePi, $ePr, $eUs, $eDc)";
         $this->db->query($sql);
         return $this->db->affected_rows();
     }
 
     public function addRecycle($caCode, $partType, $partId, $price, $user = "Worker", $description = ""){
         $ePt = $this->db->escape($partType);
-        $ePi = $this->db->escape($partId);
+        $ePi = $partId;
         $ePr = $this->db->escape($price);
         $eUs = $this->db->escape($user);
         $eDc = $this->db->escape($description);
         $sql = "insert into History(actionType, partType, partId, sale, user, description) values
-                    ('r', $ePt, $ePi, $ePr, $eUs, $eDc,)";
+                    ('r', $ePt, $ePi, $ePr, $eUs, $eDc)";
         $this->db->query($sql);
         return $this->db->affected_rows();
     }
