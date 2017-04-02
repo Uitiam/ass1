@@ -26,17 +26,18 @@ class Assembly extends Application
         $heads = array();
         $torso = array();
         $legs = array();
+        $tvar = 2;
         foreach ($hSource as $record)
         {
-            $heads[] = array ('id' => $record['CACode'], 'src' => '/parts/'.$record['fullModel'].'.jpeg', 'title' => $record['fullModel']);
+            $heads[] = array ('id' => $record['id'], 'CACode' => $record['CACode'], 'src' => '/parts/'.$record['fullModel'].'.jpeg', 'title' => $record['fullModel']);
         }
         foreach ($tSource as $record)
         {
-            $torso[] = array ('id' => $record['CACode'], 'src' => '/parts/'.$record['fullModel'].'.jpeg', 'title' => $record['fullModel']);
+            $torso[] = array ('id' => $record['id'], 'CACode' => $record['CACode'], 'src' => '/parts/'.$record['fullModel'].'.jpeg', 'title' => $record['fullModel']);
         }
         foreach ($lSource as $record)
         {
-            $legs[] = array ('id' => $record['CACode'], 'src' => '/parts/'.$record['fullModel'].'.jpeg', 'title' => $record['fullModel']);
+            $legs[] = array ('id' => $record['id'], 'CACode' => $record['CACode'], 'src' => '/parts/'.$record['fullModel'].'.jpeg', 'title' => $record['fullModel']);
         }
         $this->data['heads'] = $heads;
         $this->data['torso'] = $torso;
@@ -45,7 +46,6 @@ class Assembly extends Application
         $this->data['robotHead'] = array($heads[0]);
         $this->data['robotTorso'] = array($torso[0]);
         $this->data['robotLegs'] = array($legs[0]);
-
         $this->render();
     }
 
@@ -64,13 +64,7 @@ class Assembly extends Application
       *BUild Robot
       */
       public function buildRobot($part1, $part2, $part3){
-
-
-          return $this->output
-                      ->set_content_type('application/json')
-                      ->set_output(json_encode(array(
-                              'msg' => 'Bot Built',
-                      )));
+        return $this->robot->addRobot($part1, $part2, $part3);
       }
 
 }
