@@ -20,12 +20,7 @@ $(document).ready(function() {
 			.method('get')
 			.url('/manage/register/zucchini/' + code)
 			.on('success', function(data) {
-				var retSplit = data.msg.split(" ");
-
-				if (retSplit[1] != "Bad")
-					$('#updateText').text(retSplit[1]);
-				else
-					$('#updateText').text(data.msg);
+				$('#updateText').text(data.msg);
 			})
 			.go()
 		}

@@ -24,6 +24,7 @@ class ManageModel extends CI_Model {
 		$this->db->query('delete from History');
 		$this->db->query('delete from Legs');
 		$this->db->query('delete from Torso');
+		$this->db->query("insert Company (balance) values (1000)");
 		return $this->db->affected_rows();
 	}
 
