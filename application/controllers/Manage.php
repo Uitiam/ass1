@@ -20,14 +20,21 @@ class Manage extends Application {
 	public function reboot() {
 		$this->output->set_content_type('application/json');
 		$url = "https://umbrella.jlparry.com/work/rebootme/";
-		$result = file_get_contents($url);
 
-		if ($result == 'Ok') {
-			$this->manageModel->reboot();
+		if (strcmp($_SESSION['user'], "Manager") == 0) {
+			$result = file_get_contents($url);
+
+			if ($result == 'Ok') {
+				$this->manageModel->reboot();
+			} else {
+				return $this->output
+			            ->set_content_type('application/json')
+			            ->set_output(json_encode(array('msg'=>$result)));
+			}
 		} else {
 			return $this->output
 		            ->set_content_type('application/json')
-		            ->set_output(json_encode(array('msg'=>$result)));
+		            ->set_output(json_encode(array('msg'=>'You are not a manager.')));
 		}
 	}
 

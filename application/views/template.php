@@ -80,7 +80,7 @@ if (!defined('APPPATH'))
         <li class="sidebar-menu-item"><a href="/parts"><i class="fa fa-link"></i><span>Parts</span></a></li>
         <li class="sidebar-menu-item"><a href="/assembly"><i class="fa fa-link"></i><span>Assembly</span></a></li>
         <li class="sidebar-menu-item"><a href="/history"><i class="fa fa-link"></i><span>History</span></a></li>
-        <li class="sidebar-menu-item managerOnly"><a href="/manage"><i class="fa fa-link"></i><span>Manage</span></a></li>
+        <li class="sidebar-menu-item"><a href="/manage"><i class="fa fa-link"></i><span>Manage</span></a></li>
         <li>
           <a href="#" id="sidebarToggle" data-toggle="collapse" data-target="#userToggle" class="collapsed">
             <i class="fa fa-user"></i>User Roles<i id="indicatorIcon" class="fa fa-chevron-down pull-right"></i>
