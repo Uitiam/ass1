@@ -34,12 +34,27 @@ class Part extends CI_Model {
     //returns all records matching the $value by default against the 'type' property
     public function get($value, $type = 'type')
     {
-        $this->updateArray();
+        $parts = $this->updateArray();
         $records = array();
-        foreach ($this->parts as $record)
+        foreach ($parts as $record)
             if ($record[$type] == $value)
                 $records[] = $record;
         return $records;
+    }
+
+    public function getHeads(){
+        return $this ->db->query('SELECT CACode, used, creationTime,
+            CONCAT(model, 1) AS fullModel FROM Head WHERE used=\'f\'')->result_array();
+    }
+
+    public function getTorsos(){
+        return $this ->db->query('SELECT CACode, used, creationTime,
+            CONCAT(model, 2) AS fullModel FROM Head WHERE used=\'f\'')->result_array();
+    }
+
+    public function getLegs(){
+        return $this ->db->query('SELECT CACode, used, creationTime,
+            CONCAT(model, 3) AS fullModel FROM Head WHERE used=\'f\'')->result_array();
     }
 
     //returns all the parts

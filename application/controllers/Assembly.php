@@ -20,23 +20,23 @@ class Assembly extends Application
         // this is the view we want shown
         $this->data['pagebody'] = 'assembly';
 
-        $hSource= $this->part->get(1);
-        $tSource = $this->part->get(2);
-        $lSource = $this->part->get(3);
+        $hSource= $this->part->getHeads();//get heads
+        $tSource = $this->part->getTorsos();//get torso
+        $lSource = $this->part->getLegs();//get legs
         $heads = array();
         $torso = array();
         $legs = array();
         foreach ($hSource as $record)
         {
-            $heads[] = array ('src' => $record['src'], 'title' => $record['title']);
+            $heads[] = array ('src' => '/parts/'.$record['fullModel'].'.jpeg', 'title' => $record['fullModel']);
         }
         foreach ($tSource as $record)
         {
-            $torso[] = array ('src' => $record['src'], 'title' => $record['title']);
+            $torso[] = array ('src' => '/parts/'.$record['fullModel'].'.jpeg', 'title' => $record['fullModel']);
         }
         foreach ($lSource as $record)
         {
-            $legs[] = array ('src' => $record['src'], 'title' => $record['title']);
+            $legs[] = array ('src' => '/parts/'.$record['fullModel'].'.jpeg', 'title' => $record['fullModel']);
         }
         $this->data['heads'] = $heads;
         $this->data['torso'] = $torso;
