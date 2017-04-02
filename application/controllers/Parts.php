@@ -63,7 +63,7 @@ class Parts extends Application
         }
 
         foreach ($limited as $record) {
-            $result[] = array ('title' => $record['fullModel'], 'src' => '/parts/'.$record['fullModel'].'.jpeg', 
+            $result[] = array ('title' => $record['fullModel'], 'src' => '/parts/'.$record['fullModel'].'.jpeg',
                 'used' => $record['used'], 'CA'=>$record['CACode'], 'datetime'=>$record['creationTime']);
         }
         return $result;
@@ -123,7 +123,8 @@ class Parts extends Application
                 $stamp = $part['stamp'];
                 $model = $part['model'];
                 $this->part->insertPart($tableName, $id, $stamp, $model);
-                $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
+                $autoId = $this->db->query("SELECT id FROM $tab
+                    leName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
                 $this->historyModel->addBuild($model, $autoId, 0, "Supervisor", $id);
             } else if ($part['piece'] == 2) {
                 $tableName = 'Torso';

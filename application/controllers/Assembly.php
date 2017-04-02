@@ -66,13 +66,41 @@ class Assembly extends Application
     /*
      *Return function
      */
-     public function returnPart($code){
+     public function returnHead($id, $type){
+
+         $this->part->recycleHead($id, $type);
          return $this->output
                      ->set_content_type('application/json')
                      ->set_output(json_encode(array(
                              'msg' => 'Part Returned',
                      )));
      }
+
+     /*
+      *Return function
+      */
+      public function returnTorso($id, $type){
+
+          $this->part->recycleTorso($id, $type);
+          return $this->output
+                      ->set_content_type('application/json')
+                      ->set_output(json_encode(array(
+                              'msg' => 'Part Returned',
+                      )));
+      }
+
+      /*
+       *Return function
+       */
+       public function returnLegs($id, $type){
+
+           $this->part->recycleLegs($id, $type);
+           return $this->output
+                       ->set_content_type('application/json')
+                       ->set_output(json_encode(array(
+                               'msg' => 'Part Returned',
+                       )));
+       }
 
      /*
       *BUild Robot

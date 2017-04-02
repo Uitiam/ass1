@@ -21,17 +21,48 @@ $(document).ready(function(){
         $("#botLegs").attr('title', this.title);
     });
 
-    $(".returnPart").click(function(){
+    $(".returnHead").click(function(){
         //change src
-        /*aja()
-        .url('../assembly/returnPart/' + this.id)
+        console.log(this.title);
+        aja()
+        .url('../assembly/returnHead/' + this.title + '/' + 1)
         .on('success', function(data){
         console.log(data['msg']);
     })
-    .go();*/
+    .go();
+
+        location.reload();
         //change title
     });
 
+    $(".returnTorso").click(function(){
+        //change src
+
+        console.log(this.title);
+
+        aja()
+        .url('../assembly/returnTorso/' + this.title + '/' + 1)
+        .on('success', function(data){
+        console.log(data['msg']);
+    })
+    .go();
+
+        location.reload();
+        //change title
+    });
+
+    $(".returnLegs").click(function(){
+        //change src
+        console.log(this.title);
+        aja()
+        .url('../assembly/returnLegs/' + this.title + '/' + 1)
+        .on('success', function(data){
+        console.log(data['msg']);
+    })
+    .go();
+        location.reload();
+        //change title
+    });
     $(".buildBot").click(function(){
         //use parts
         //buildBot
