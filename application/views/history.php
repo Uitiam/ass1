@@ -6,19 +6,43 @@
         <div class="box-header with-border">
         <h2 class="box-title">{listing}</h2>
         <div class="box-tools pull-right">
-            <button class="btn btn-box-tool">
-                <a href="{first}"><i class="fa fa-step-backward"></i></a>
-            </button>
-            <button class="btn btn-box-tool">
-                <a href="{prev}"><i class="fa fa-arrow-left"></i></a>
-            </button>
+            Sort Type:
+            <a href="n">
+                <button class="btn btn-box-tool">
+                    Part Type
+                </button>
+            </a>
+            <a href="a">
+                <button class="btn btn-box-tool">
+                    Action Type
+                </button>
+            </a>
+            <a href="d">
+                <button class="btn btn-box-tool">
+                    Date
+                </button>
+            </a>
+            <a href="{first}">
+                <button class="btn btn-box-tool">
+                    <i class="fa fa-step-backward"></i>
+                </button>
+            </a>
+            <a href="{prev}">
+                <button class="btn btn-box-tool">
+                   <i class="fa fa-arrow-left"></i>
+                </button>
+            </a>
             <button class="btn btn-box-tool">{page}</button>
-            <button class="btn btn-box-tool">
-                <a href="{next}"<i class="fa fa-arrow-right"></i></a>
-            </button>
-            <button class="btn btn-box-tool">
-                <a href="{last}"><i class="fa fa-step-forward"></i></a>
-            </button>
+            <a href="{next}">
+                <button class="btn btn-box-tool">
+                    <i class="fa fa-arrow-right"></i>
+                </button>
+            </a>
+            <a href="{last}">
+                <button class="btn btn-box-tool">
+                    <i class="fa fa-step-forward"></i>
+                </button>
+            </a>
 
             <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
         </div>
@@ -28,11 +52,11 @@
         <table class="table table-bordered">
         {history}
             <tr>
-            <td class="col-xs-1"><p>{type}</p></td>
+            <td class="col-xs-1"><p>Action: {type}</p></td>
             <td class="col-xs-3"><p>{data}</p></td>
-            <td class="col-xs-2"><p>{part}</p></td>
+            <td class="col-xs-2"><p>Part: {part}</p></td>
             <td class="col-xs-2"><p>${sale}</p></td>
-            <td class="col-xs-4"><p>{datetime}</p></td>
+            <td class="col-xs-4"><p>Creation: {datetime}</p></td>
             </tr>
         {/history}
         </table>
