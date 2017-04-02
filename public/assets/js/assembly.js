@@ -27,7 +27,7 @@ $(document).ready(function(){
         aja()
         .url('../assembly/returnHead/' + this.title + '/' + 1)
         .on('success', function(data){
-        console.log(data['msg']);
+        alert(data['msg']);
     })
     .go();
 
@@ -43,7 +43,7 @@ $(document).ready(function(){
         aja()
         .url('../assembly/returnTorso/' + this.title + '/' + 1)
         .on('success', function(data){
-        console.log(data['msg']);
+        alert(data['msg']);
     })
     .go();
 
@@ -57,7 +57,7 @@ $(document).ready(function(){
         aja()
         .url('../assembly/returnLegs/' + this.title + '/' + 1)
         .on('success', function(data){
-        console.log(data['msg']);
+        alert(data['msg']);
     })
     .go();
         location.reload();
@@ -77,7 +77,7 @@ $(document).ready(function(){
             aja()
             .url('../assembly/buildRobot/' + part1 + '/' + part2 + '/' + part3)
             .on('success', function(data){
-                console.log(data['msg']);
+                alert(data['msg']);
             })
             .go();
         } else {
