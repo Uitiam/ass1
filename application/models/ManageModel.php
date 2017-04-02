@@ -7,7 +7,7 @@ class ManageModel extends CI_Model {
 	}
 
 	public function get() {
-		$query = $this->db->query('select * from robot where "used" = "f";')->result_array();
+		$query = $this->db->query("select * from robot where used = 'f';")->result_array();
 		return $query;
 	}
 
@@ -21,11 +21,11 @@ class ManageModel extends CI_Model {
 	}
 
 	public function getQuery($id) {
-		$result = $this->db->query('select * from robot where "used" = "f" AND "id" = ' . $id)->result_array();
+		$result = $this->db->query("select * from robot where used = 'f' AND id = " . "'" . $id . "';")->result_array();
 		return $result;
 	}
 
 	public function removeBuiltBot($id) {
-		$this->db->query('update robot set "used" = "t" where "id"=' . $id . ";");
+		$this->db->query("update robot set used = 't' where id = " . "'" . $id . "';");
 	}
 }

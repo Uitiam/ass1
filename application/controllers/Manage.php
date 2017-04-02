@@ -78,10 +78,13 @@ class Manage extends Application {
 		$robot = $this->manageModel->getQuery($id);
 		
 		if ($robot != NULL) {
-			$id = $robot['id'];
-			$headID = $robot['headId'];
-			$torsoID = $robot['torsoId'];
-			$legsID = $robot['legsId'];	
+
+			foreach($robot as $entry) {
+				$id = $entry['id'];
+				$headID = $entry['headId'];
+				$torsoID = $entry['torsoId'];
+				$legsID = $entry['legsId'];	
+			}
 
 			$url = "https://umbrella.jlparry.com/work/buymybot/" . $headID . "/" . $torsoID . "/" . $legsID;
 
