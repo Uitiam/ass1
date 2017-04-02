@@ -1,6 +1,5 @@
 $(document).ready(function(){
     $(".useHead").click(function(){
-
         //change src
         $("#botHead").attr('src', "/assets/img/" + this.id);
         //change title
@@ -9,7 +8,6 @@ $(document).ready(function(){
     });
 
     $(".useTorso").click(function(){
-        console.log("USE TORSO\n");
         //change src
         $("#botTorso").attr('src', "/assets/img/" + this.id);
         //change title
@@ -17,7 +15,6 @@ $(document).ready(function(){
     });
 
     $(".useLegs").click(function(){
-        console.log("USE LEGS\n");
         //change src
         $("#botLegs").attr('src', "/assets/img/" + this.id);
         //change title
@@ -25,20 +22,28 @@ $(document).ready(function(){
     });
 
     $(".returnPart").click(function(){
-        console.log("RETURN PART\n");
         //change src
         aja()
-          .url('../assembly/returnPart')
-          .on('success', function(){
+          .url('../assembly/returnPart/' + this.id)
+          .on('success', function(data){
+              console.log(data['msg']);
           })
           .go();
         //change title
     });
 
     $(".buildBot").click(function(){
-        console.log("BUILD BOT\n");
         //use parts
         //buildBot
+        var part1 = $("#botHead").attr('title');
+        var part2 = $("#botTorso").attr('title');
+        var part3 = $("#botLegs").attr('title');
+        aja()
+          .url('../assembly/buildRobot/' + part1 + '/' + part2 + '/' + part3)
+          .on('success', function(data){
+              console.log(data['msg']);
+          })
+          .go();
 
 
     });

@@ -8,53 +8,65 @@ class Parts extends Application
     function __construct()
     {
         parent::__construct();
-        session_start();
     }
 
     /**
      * Homepage for our app
      */
-    public function index()
+    public function index($page = -1)
     {
+        if ($page == -1) {
+            $this->load->helper('url');
+            redirect('parts/index/1');
+            return;
+        }
         // this is the view we want shown
         $this->data['pagebody'] = 'parts';
-
-        // build the list of authors, to pass on to our view
-        $source = $this->part->all();
-        $parts = array();
-        $counter = 0;
-        foreach ($source as $record) {
-            $parts[] = array ('UID' => $counter++, 'title' => $record['fullModel'], 'src' => '/parts/'.$record['fullModel'].'.jpeg', 
-                'used' => $record['used'], 'CA'=>$record['CACode'], 'datetime'=>$record['creationTime']);
-        }
-        $this->data['parts'] = $parts;
-
+        $this->data['parts'] = $this->getPage($page);
         $this->render();
     }
 
-    private function getKey() {
-        $pass = $this->db->query('SELECT * FROM Company')->result_array();
-        if (empty($pass) || empty($pass[0]['accessToken'])) {
-            return -1;
+    public function getPage($page = 1) {
+        $vals = $this->part->all();
+        $start = ($page - 1) * 10;
+        $limited = array_slice($vals, $start, 10);
+        $result = array();
+        $counter = 0;
+        foreach ($limited as $record) {
+            $result[] = array ('title' => $record['fullModel'], 'src' => '/parts/'.$record['fullModel'].'.jpeg', 
+                'used' => $record['used'], 'CA'=>$record['CACode'], 'datetime'=>$record['creationTime']);
         }
-        return $pass[0]['accessToken'];
+        return $result;
+    }
+
+    private function getKey() {
+        return $this->company->apiKey();
     }
 
     private function makeRequest($url) {
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        $response = curl_exec($ch);
-        curl_close($ch);
-        return $response;
+        return file_get_contents($url);
+    }
+
+    private function updateBalance() {
+        $this->output->set_content_type('application/json');
+        $key = $this->getKey();
+        if ($key == false) {
+            return $this->output
+                        ->set_content_type('application/json')
+                        ->set_output(json_encode(array(
+                                'msg' => 'No password found on server, please set one',
+                        )));
+        }
+        $url = "https://umbrella.jlparry.com/info/balance/zucchini";
+        $response = $this->makeRequest($url);
+        $response = json_decode($response);
+        $this->company->set("balance", $response);
     }
 
     public function build() {
         $this->output->set_content_type('application/json');
         $key = $this->getKey();
-        if ($key == -1) {
+        if ($key == false) {
             return $this->output
                         ->set_content_type('application/json')
                         ->set_output(json_encode(array(
@@ -64,7 +76,7 @@ class Parts extends Application
         $url = "https://umbrella.jlparry.com/work/mybuilds?key=".$key;
 
         $response = $this->makeRequest($url);
-        $response = json_decode($response);
+        $response = json_decode($response, true);
 
         if ($response == NULL) {
             return $this->output
@@ -77,28 +89,28 @@ class Parts extends Application
         foreach ($response as $part) {
             if ($part['piece'] == 1) {
                 $tableName = 'Head';
-                $id = $this->db->escape($part['id']);
-                $stamp = $this->db->escape($part['stamp']);
-                $model = $this->db->escape($part['model']);
+                $id = $part['id'];
+                $stamp = $part['stamp'];
+                $model = $part['model'];
                 $this->part->insertPart($tableName, $id, $stamp, $model);
-                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
-                $this->history->addSell($id, $model, $autoId, 0);
+                $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
+                $this->historyModel->addBuild($model, $autoId, 0, "Supervisor", $id);
             } else if ($part['piece'] == 2) {
                 $tableName = 'Torso';
-                $id = $this->db->escape($part['id']);
-                $stamp = $this->db->escape($part['stamp']);
-                $model = $this->db->escape($part['model']);
+                $id = $part['id'];
+                $stamp = $part['stamp'];
+                $model = $part['model'];
                 $this->part->insertPart($tableName, $id, $stamp, $model);
-                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
-                $this->history->addSell($id, $model, $autoId, 0);
+                $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
+                $this->historyModel->addBuild($model, $autoId, 0, "Supervisor", $id);
             } else if ($part['piece'] == 3) {
                 $tableName = 'Legs';
-                $id = $this->db->escape($part['id']);
-                $stamp = $this->db->escape($part['stamp']);
-                $model = $this->db->escape($part['model']);
+                $id = $part['id'];
+                $stamp = $part['stamp'];
+                $model = $part['model'];
                 $this->part->insertPart($tableName, $id, $stamp, $model);
-                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
-                $this->history->addSell($id, $model, $autoId, 0);
+                $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
+                $this->historyModel->addBuild($model, $autoId, 0, "Supervisor", $id);
             }
         }
         return $this->output
@@ -111,7 +123,7 @@ class Parts extends Application
     public function buy() {
         $this->output->set_content_type('application/json');
         $key = $this->getKey();
-        if ($key == -1) {
+        if ($key == false) {
             return $this->output
                         ->set_content_type('application/json')
                         ->set_output(json_encode(array(
@@ -120,7 +132,7 @@ class Parts extends Application
         }
         $url = "https://umbrella.jlparry.com/work/buybox?key=" . $key;
         $response = $this->makeRequest($url);
-        $response = json_decode($response);
+        $response = json_decode($response, true);
 
         if ($response == NULL) {
             return $this->output
@@ -133,30 +145,31 @@ class Parts extends Application
         foreach ($response as $part) {
             if ($part['piece'] == 1) {
                 $tableName = 'Head';
-                $id = $this->db->escape($part['id']);
-                $stamp = $this->db->escape($part['stamp']);
-                $model = $this->db->escape($part['model']);
+                $id = $part['id'];
+                $stamp = $part['stamp'];
+                $model = $part['model'];
                 $this->part->insertPart($tableName, $id, $stamp, $model);
-                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
-                $this->history->addBuy($model, $autoId, 10, "Worker", $id);
+                $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
+                $this->historyModel->addBuy($model, $autoId, 10, "Worker", $id);
             } else if ($part['piece'] == 2) {
                 $tableName = 'Torso';
-                $id = $this->db->escape($part['id']);
-                $stamp = $this->db->escape($part['stamp']);
-                $model = $this->db->escape($part['model']);
+                $id = $part['id'];
+                $stamp = $part['stamp'];
+                $model = $part['model'];
                 $this->part->insertPart($tableName, $id, $stamp, $model);
-                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
-                $this->history->addBuy($model, $autoId, 10, "Worker", $id);
+                $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
+                $this->historyModel->addBuy($model, $autoId, 10, "Worker", $id);
             } else if ($part['piece'] == 3) {
                 $tableName = 'Legs';
-                $id = $this->db->escape($part['id']);
-                $stamp = $this->db->escape($part['stamp']);
-                $model = $this->db->escape($part['model']);
+                $id = $part['id'];
+                $stamp = $part['stamp'];
+                $model = $part['model'];
                 $this->part->insertPart($tableName, $id, $stamp, $model);
-                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
-                $this->history->addBuy($model, $autoId, 10, "Worker", $id);
+                $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
+                $this->historyModel->addBuy($model, $autoId, 10, "Worker", $id);
             }
         }
+        $this->updateBalance();
         return $this->output
                     ->set_content_type('application/json')
                     ->set_output(json_encode(array(

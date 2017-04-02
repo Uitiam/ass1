@@ -21,14 +21,14 @@ class Part extends CI_Model {
     //returns the total number of parts in stock
     public function partCount(){
         $this->updateArray();
-        return count($this->parts);
+        return count($this->all());
     }
 
     public function insertPart($tableName, $cacode, $stamp, $model) {
-        $id = $this->db->escape($cacode);
+        $cacode = $this->db->escape($cacode);
         $stamp = $this->db->escape($stamp);
         $model = $this->db->escape($model);
-        $this->db->query("INSERT INTO $tableName (CACode, used, creationTime, model) VALUES ($id, f, $stamp, $model)");
+        $this->db->query("INSERT INTO $tableName (CACode, used, creationTime, model) VALUES ($cacode, 'f', $stamp, $model)");
     }
 
     //returns all records matching the $value by default against the 'type' property

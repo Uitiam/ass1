@@ -134,5 +134,6 @@ $autoload['language'] = array();
 */
 $autoload['model'] = array(
     'part',
-    'history'
+    'company',
+    'historyModel'
 );

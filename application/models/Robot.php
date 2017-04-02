@@ -36,5 +36,5 @@ class Robot extends CI_Model {
         return $this->robots;
     }
 
-
+    
 }
