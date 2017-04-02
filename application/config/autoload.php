@@ -136,5 +136,6 @@ $autoload['model'] = array(
     'part',
     'company',
     'historyModel',
-    'manageModel'
+    'manageModel',
+    'robot'
 );

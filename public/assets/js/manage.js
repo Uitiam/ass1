@@ -18,7 +18,11 @@ $(document).ready(function() {
 			.url('/manage/register/zucchini/' + code)
 			.on('success', function(data) {
 				var retSplit = data.msg.split(" ");
-				$('#updateText').text(retSplit[1]);
+
+				if (retSplit[1] != "Bad")
+					$('#updateText').text(retSplit[1]);
+				else
+					$('#updateText').text(data.msg);
 			})
 			.go()
 		}
