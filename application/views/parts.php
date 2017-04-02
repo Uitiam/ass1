@@ -1,4 +1,4 @@
-<script src="assets/js/parts.js"></script>
+<script src="/assets/js/parts.js"></script>
 <div>
     <div class="page-header">
     <h1>Parts <small>Full catalog</small></h1>
@@ -9,13 +9,13 @@
     </div>
     <div class="row">
     {parts}
-    <div class="col-xs-12 col-md-6 col-lg-4">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
         <div class="box box-success">
             <div class="box-header">
                 <h1 class="box-title">{title}</h1>
             </div>
             <div class="box-body">
-                <div id="{UID}" class="carousel" data-interval="false">
+                <div id="{CA}" class="carousel" data-interval="false">
                     <div class="carousel-inner" role="listbox">
                         <div class="item active col-xs-12" style="height:200px;">
                             <img class="img-responsive img-rounded" src="/assets/img/{src}" title="{title}"/>
@@ -37,7 +37,7 @@
                                 </tr>
                             </table>
                         </div>
-                        <a class="right carousel-control" href="#{UID}" role="button" data-slide="next">
+                        <a class="right carousel-control" href="#{CA}" role="button" data-slide="next">
                             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                         </a>
                     </div>
