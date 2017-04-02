@@ -20,13 +20,13 @@ class Robot extends CI_Model {
 
     //returns the total number of robots in stock
     public function botCount(){
-        return count($this->robots);
+        return count($this->all());
     }
 
     //returns all the robots
-    public function all()
-    {
-        return $this->robots;
+    public function all() {
+        $sql = "select * from Robot";
+        return $this->db->query($sql)->result_array();
     }
 
     /*
