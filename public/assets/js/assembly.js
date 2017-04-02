@@ -23,12 +23,12 @@ $(document).ready(function(){
 
     $(".returnPart").click(function(){
         //change src
-        aja()
+        /*aja()
           .url('../assembly/returnPart/' + this.id)
           .on('success', function(data){
               console.log(data['msg']);
           })
-          .go();
+          .go();*/
         //change title
     });
 
@@ -38,6 +38,10 @@ $(document).ready(function(){
         var part1 = $("#botHead").attr('title');
         var part2 = $("#botTorso").attr('title');
         var part3 = $("#botLegs").attr('title');
+        console.log("Head" + part1);
+        console.log("Torso" + part2);
+        console.log("LEgs" + part3);
+
         aja()
           .url('../assembly/buildRobot/' + part1 + '/' + part2 + '/' + part3)
           .on('success', function(data){

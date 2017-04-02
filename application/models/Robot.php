@@ -2,13 +2,6 @@
 
 class Robot extends CI_Model {
 
-    //mock data array
-    var $robots = array(
-        array('id'=>'1', 'bot'=> 'motley', 'price'=> '25', 'head'=>'m', 'torso'=>'r', 'leg'=>'a'),
-        array('id'=>'2', 'bot'=> 'butler', 'price'=> '100','head'=>'m', 'torso'=>'m', 'leg'=>'m'),
-        array('id'=>'3', 'bot'=> 'motley', 'price'=> '25', 'head'=>'m', 'torso'=>'r', 'leg'=>'a'),
-    );
-
     // Constructor
     public function __construct()
     {
@@ -20,8 +13,8 @@ class Robot extends CI_Model {
     {
         $records = array();
         foreach($this->robots as $record)
-            if($records[$type] == $value)
-                $records[] = $record;
+        if($records[$type] == $value)
+        $records[] = $record;
         return $records;
     }
 
@@ -37,69 +30,55 @@ class Robot extends CI_Model {
     }
 
     /*
-     *Add Robot
-     */
-     public function addRobot($part1, $part2, $part3){
-         $eV = $this->db->escape($part2);
-         $sql = "SELECT model FROM Head WHERE id=$eV";
-         $h = $this->db->query($sql);
+    *Add Robot
+    */
+    public function addRobot($part1, $part2, $part3){
 
-         $eV = $this->db->escape($part2);
-         $sql = "SELECT model FROM Torso WHERE id=$eV";
-         $t = $this->db->query($sql);
 
-         $eV = $this->db->escape($part3);
-         $sql = "SELECT model FROM Legs WHERE id=$eV";
-         $l = $this->db->query($sql);
 
-         /*$head = ord($h);
-         $troso = ord($t);
-         $legs = ord($l);
-         $hModel = "h";
-         $tModel = "h";
-         $lModel = "h";
-         $model = "h";
-         $bBot = ord("l");
-         $cBot = ord("c");*/
-        // if(){
-             /*if($hModel > $cBot){
-                 $hModel = 'c';
-             } else {
-                 $hModel = 'b';
-             }*/
-        // }
+        /*$eV = $this->db->escape($part1);
+        $sql = "select * from head where id=1";
+        $h[] = $this->db->query($sql)->result_array();
 
-        /* if($toros > ord('l')){
-             if($torso > ord('v')){
-                $tModel = 'c';
-             } else {
-                 $tModel = 'b';
-             }
-         }
+        $eV = $this->db->escape($part2);
+        $sql[] = "select * from torso where id=1";
+        $t = $this->db->query($sql)->result_array();
 
-         if($legs > ord('l')){
-             if($legs > ord('v')){
-                 $lModel = 'c';
-             } else {
-                 $lModel = 'b';
-             }
-         }
+        $eV = $this->db->escape($part3);
+        $sql[] = "select * from legs where id=1";
+        $l = $this->db->query($sql)->result_array();
 
-         if(ord(hModel) == ord(tModel) && ord(hModel) == ord(lModel)){
-             if($head == $torso && $head == $legs){
-                 $model = strtoupper($hModel);
-             } else {
-                 $model = $hModel;
-             }
-         }
+        /*$hModel = partModel($h);
+        $tModel = partModel($t);
+        $lModel = partModel($l);
+        $model = "!";
+        $bBot = "l";
+        $cBot = "c";
 
-         $this->db->query("INSERT INTO Robot(headId, torsoId, legsId, model)
-                        VALUES (" + $part1 + ", " + $part2 + ", " + $part3 + ")");*/
+        /*if(strcmp($hmodel, $tModel) == 0 && strcmp($hmodel, $lModel) == 0){
+            if(strcmp($h, $t) == 0 && strcmp($h, $l) == 0){
+                $model = strtoupper($hmodel);
+            } else {
+                $midel = $hmodel;
+            }
+        }*/
 
-         return $this->output
-                     ->set_content_type('application/json')
-                     ->set_output(json_encode(array(
-                             'msg' => 'Bot Built',
-                     )));
+        $p1 = $this->db->escape($part1);
+        $p2 = $this->db->escape($part2);
+        $p3 = $this->db->escape($part3);
+        $p4 = 2;
+
+        $this->db->query("insert into Robot(headId, torsoId, legsId, used)
+        VALUES ($p1, $p2, $p3, 'f')");
+    }
+
+    public function partModel($model){
+        if(strcmp("$model", "l") > 0){
+            return 'h';
+        } else if (strcmp("$model", "l") > v){
+            return 'b';
+        } else {
+            return 'c';
         }
+    }
 }

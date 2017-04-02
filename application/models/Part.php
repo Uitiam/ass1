@@ -43,36 +43,19 @@ class Part extends CI_Model {
     }
 
     public function getHeads(){
-        $heads = $this ->db->query('SELECT id, CACode, used, creationTime,
-            CONCAT(model, 1) AS fullModel FROM Head WHERE used=\'f\'')->result_array();
-
-        $records = array();
-        foreach($heads as $record)
-            $records[] = $record;
-
-        return $records;
+        return $this ->db->query("SELECT id, CACode, used, creationTime,
+            CONCAT(model, 1) AS fullModel FROM Head WHERE used='f'")->result_array();
     }
 
     public function getTorsos(){
-        $torsos = $this ->db->query('SELECT id, CACode, used, creationTime,
-            CONCAT(model, 2) AS fullModel FROM Torso WHERE used=\'f\'')->result_array();
+        return $this ->db->query("SELECT id, CACode, used, creationTime,
+            CONCAT(model, 2) AS fullModel FROM Torso WHERE used='f'")->result_array();
 
-        $records = array();
-        foreach($torsos as $record)
-            $records[] = $record;
-
-        return $records;
     }
 
     public function getLegs(){
-        $legs = $this ->db->query('SELECT id, CACode, used, creationTime,
-            CONCAT(model, 3) AS fullModel FROM Legs WHERE used=\'f\'')->result_array();
-
-        $records = array();
-        foreach($legs as $record)
-            $records[] = $record;
-
-        return $records;
+        return $this ->db->query("SELECT id, CACode, used, creationTime,
+            CONCAT(model, 3) AS fullModel FROM Legs WHERE used='f'")->result_array();
     }
 
     //returns all the parts

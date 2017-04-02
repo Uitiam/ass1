@@ -64,7 +64,13 @@ class Assembly extends Application
       *BUild Robot
       */
       public function buildRobot($part1, $part2, $part3){
-        return $this->robot->addRobot($part1, $part2, $part3);
-      }
 
+         // $this->render();
+        $this->robot->addRobot($part1, $part2, $part3);
+        return $this->output
+                    ->set_content_type('application/json')
+                    ->set_output(json_encode(array(
+                            'msg' => 'Bot Built',
+                    )));
+       }
 }
