@@ -18,12 +18,12 @@ class ManageModel extends CI_Model {
 	** Reboots the factory.
 	*/
 	public function reboot() {
-		$this->db->query('delete company where 1=1;');
-		$this->db->query('delete head where 1=1;');
-		$this->db->query('delete history where 1=1;');
-		$this->db->query('delete legs where 1=1;');
-		$this->db->query('delete robot where 1=1;');
-		$this->db->query('delete torso where 1=1;');
+		$this->db->query('delete Company where 1=1;');
+		$this->db->query('delete Head where 1=1;');
+		$this->db->query('delete History where 1=1;');
+		$this->db->query('delete Legs where 1=1;');
+		$this->db->query('delete Robot where 1=1;');
+		$this->db->query('delete Torso where 1=1;');
 	}
 
 	/* Michael Goll | April 1, 2017
