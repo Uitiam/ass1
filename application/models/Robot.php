@@ -35,15 +35,15 @@ class Robot extends CI_Model {
     public function addRobot($part1, $part2, $part3){
 
         $eV = $this->db->escape($part1);
-        $sql = "select * from head where id=1";
+        $sql = "select * from head where id=$eV";
         $h = $this->db->query($sql)->result_array()[0]['model'];
 
         $eV = $this->db->escape($part2);
-        $sql = "select * from torso where id=1";
+        $sql = "select * from torso where id=$eV";
         $t = $this->db->query($sql)->result_array()[0]['model'];
 
         $eV = $this->db->escape($part3);
-        $sql = "select * from legs where id=1";
+        $sql = "select * from legs where id=$eV";
         $l = $this->db->query($sql)->result_array()[0]['model'];
 
         $hModel = $this->partModel($h);
@@ -63,8 +63,14 @@ class Robot extends CI_Model {
         $p2 = $this->db->escape($part2);
         $p3 = $this->db->escape($part3);
 
-        $this->db->query("insert into Robot(headId, torsoId, legsId, used, model)
+        $rId = $this->db->query("insert into Robot(headId, torsoId, legsId, used, model)
         VALUES ($p1, $p2, $p3, 'f', '$model')");
+
+        $this->db->query("update Head set used = 't' where id = $p1");
+        $this->db->query("update Torso set used = 't' where id = $p2");
+        $this->db->query("update Legs set used = 't' where id = $p3");
+
+        $this->historyModel->addBuild('r', $rId, 0, "Supervisor", "Robot built");
     }
 
     public function partModel($model){

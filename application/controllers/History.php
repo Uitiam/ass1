@@ -23,15 +23,15 @@ class History extends Application
 
         if($sort == 'n'){//normal
             usort($vals, function($a, $b){
-                return $a['partType'] < $b['partType'];
+                return $a['partType'] > $b['partType'];
             });
         } else if ($sort == 'a') {//action
             usort($vals, function($a, $b){
-                return $a['actionType'] < $b['actionType'];
+                return $a['actionType'] > $b['actionType'];
             });
         } else if ($sort == 'd') {//date
             usort($vals, function($a, $b){
-                return strtotime($a['creationTime']) < strtotime($b['creationTime']);
+                return strtotime($a['creationTime']) > strtotime($b['creationTime']);
             });
         }
 
