@@ -70,7 +70,7 @@ class Parts extends Application
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
-                $this->history->addSell($id, $model, $autoId, 0);
+                $this->historyModel->addSell($id, $model, $autoId, 0);
             } else if ($part['piece'] == 2) {
                 $tableName = 'Torso';
                 $id = $this->db->escape($part['id']);
@@ -78,7 +78,7 @@ class Parts extends Application
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
-                $this->history->addSell($id, $model, $autoId, 0);
+                $this->historyModel->addSell($id, $model, $autoId, 0);
             } else if ($part['piece'] == 3) {
                 $tableName = 'Legs';
                 $id = $this->db->escape($part['id']);
@@ -86,7 +86,7 @@ class Parts extends Application
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
-                $this->history->addSell($id, $model, $autoId, 0);
+                $this->historyModel->addSell($id, $model, $autoId, 0);
             }
         }
         $this->company->set('balance', $this->company->get('balance') - 100);
@@ -127,7 +127,7 @@ class Parts extends Application
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
-                $this->history->addBuy($model, $autoId, 10, "Worker", $id);
+                $this->historyModel->addBuy($model, $autoId, 10, "Worker", $id);
             } else if ($part['piece'] == 2) {
                 $tableName = 'Torso';
                 $id = $this->db->escape($part['id']);
@@ -135,7 +135,7 @@ class Parts extends Application
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
-                $this->history->addBuy($model, $autoId, 10, "Worker", $id);
+                $this->historyModel->addBuy($model, $autoId, 10, "Worker", $id);
             } else if ($part['piece'] == 3) {
                 $tableName = 'Legs';
                 $id = $this->db->escape($part['id']);
@@ -143,7 +143,7 @@ class Parts extends Application
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
-                $this->history->addBuy($model, $autoId, 10, "Worker", $id);
+                $this->historyModel->addBuy($model, $autoId, 10, "Worker", $id);
             }
         }
         $this->company->set('balance', $this->company->get('balance') - 100);

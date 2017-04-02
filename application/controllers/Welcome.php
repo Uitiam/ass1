@@ -53,18 +53,18 @@ class Welcome extends Application
   //total spend on parts
   public function totalSpent() 
   {
-    return $this->history->cost();
+    return $this->historyModel->cost();
   }
 
   //total earned from selling robots or parts
   public function totalEarned() 
   {
-    return $this->history->sales();
+    return $this->historyModel->sales();
   }
 
   public function drawGraph() 
   {
-    $JSONobj = json_encode($this->history->all());
+    $JSONobj = json_encode($this->historyModel->all());
     return $JSONobj;
   }
 }
