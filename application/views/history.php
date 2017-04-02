@@ -6,6 +6,22 @@
         <div class="box-header with-border">
         <h2 class="box-title">{listing}</h2>
         <div class="box-tools pull-right">
+            Sort Type:
+            <a href="n">
+                <button class="btn btn-box-tool">
+                    Part Type
+                </button>
+            </a>
+            <a href="a">
+                <button class="btn btn-box-tool">
+                    Action Type
+                </button>
+            </a>
+            <a href="d">
+                <button class="btn btn-box-tool">
+                    Date
+                </button>
+            </a>
             <a href="{first}">
                 <button class="btn btn-box-tool">
                     <i class="fa fa-step-backward"></i>

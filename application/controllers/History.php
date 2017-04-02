@@ -14,13 +14,35 @@ class History extends Application
 
     //get the requested page number with 20 records
     //defaults to all entries
-    private function getPage($page, $type = 'a') {
+    private function getPage($page, $type, $sort) {
         if($type == 'a')
             $vals = $this->historyModel->all();
         else 
             $vals = $this->historyModel->get($type);
         $total = intval(count($vals) / 20) + 1;
-        
+
+        if($sort == 'n'){//normal
+            usort($vals, function($a, $b){
+                return $a['partType'] < $b['partType'];
+            });
+        } else if ($sort == 'a') {//action
+            usort($vals, function($a, $b){
+                return $a['actionType'] < $b['actionType'];
+            });
+        } else if ($sort == 'd') {//date
+            usort($vals, function($a, $b){
+                return strtotime($a['creationTime']) < strtotime($b['creationTime']);
+            });
+        }
+
+        $start = ($page - 1) * 20;
+        $limited = array_slice($vals, $start, 20);
+        $result = array();
+        foreach ($limited as $trans)
+            $result[] = array ('type' => $trans['actionType'], 'data' => $trans['description'],
+                'part' => $trans['partType'], 'datetime' => $trans['creationTime'], 'sale' => $trans['sale']);
+
+        //setup the page links for nav
         $this->page['first'] = 1;
         $this->page['page'] = $page;
         $this->page['prev'] = $page - 1;
@@ -36,101 +58,95 @@ class History extends Application
 
         if($page > $total){
             $this->load->helper('url');
-            redirect("/history/index/$total");
+            redirect("/history/index/$total/".$sort);
             return;
         } else if ($page < 1){
             $this->load->helper('url');
-            redirect("/history/index/1");
+            redirect("/history/index/1/".$sort);
             return;
         }
 
-        $start = ($page - 1) * 20;
-        $limited = array_slice($vals, $start, 20);
-        $result = array();
-        foreach ($limited as $trans)
-            $result[] = array ('type' => $trans['actionType'], 'data' => $trans['description'],
-                'part' => $trans['partType'], 'datetime' => $trans['creationTime'], 'sale' => $trans['sale']);
         return $result;
     }
 
-    private function addPageIndexs(){
-        $this->data['first'] = '/history/index/'.$this->page['first'];
-        $this->data['prev'] = '/history/index/'.$this->page['prev'];
+    private function addPageIndexs($sort){
+        $this->data['first'] = '/history/index/'.$this->page['first']."/$sort";
+        $this->data['prev'] = '/history/index/'.$this->page['prev']."/$sort";
         $this->data['page'] = $this->page['page'];
-        $this->data['next'] = '/history/index/'.$this->page['next'];
-        $this->data['last'] = '/history/index/'.$this->page['last'];
+        $this->data['next'] = '/history/index/'.$this->page['next']."/$sort";
+        $this->data['last'] = '/history/index/'.$this->page['last']."/$sort";
     }
 
-    public function index($page = -1)
+    public function index($page = -1, $sort = 'n')
     {
         if($page == -1){
             $this->load->helper('url');
-            redirect('/history/index/1');
+            redirect('/history/index/1/'.$sort);
             return;
         }
         // this is the view we want shown
         $this->data['pagebody'] = 'history';
-        $this->data['history'] = $this->getPage($page);
+        $this->data['history'] = $this->getPage($page, 'a', $sort);
         $this->data['limiter'] = 'All';
         $this->data['listing'] = 'Full History';
-        $this->addPageIndexs();
+        $this->addPageIndexs($sort);
         $this->render();
     }
 
-    public function buy($page = -1){
+    public function buy($page = -1, $sort = 'n'){
         if($page == -1){
             $this->load->helper('url');
-            redirect('/history/buy/1');
+            redirect('/history/buy/1/'.$sort);
             return;
         }
         $this->data['pagebody'] = 'history';
-        $this->data['history'] =  $this->getPage($page, 'p');
+        $this->data['history'] =  $this->getPage($page, 'p', $sort);
         $this->data['limiter'] = 'Purchase';
         $this->data['listing'] = 'Purchased Items';
-        $this->addPageIndexs();
+        $this->addPageIndexs($sort);
         $this->render();
     }
 
 
-    public function sell($page = -1){
+    public function sell($page = -1, $sort = 'n'){
         if($page == -1){
             $this->load->helper('url');
-            redirect('/history/sell/1');
+            redirect('/history/sell/1/'.$sort);
             return;
         }
         $this->data['pagebody'] = 'history';
-        $this->data['history'] =  $this->getPage($page, 's');
+        $this->data['history'] =  $this->getPage($page, 's', $sort);
         $this->data['limiter'] = 'Sell';
         $this->data['listing'] = 'Sold Items';
-        $this->addPageIndexs();
+        $this->addPageIndexs($sort);
         $this->render();
     }
 
-    public function build($page = -1){
+    public function build($page = -1, $sort = 'n'){
         if($page == -1){
             $this->load->helper('url');
-            redirect('/history/build/1');
+            redirect('/history/build/1/'.$sort);
             return;
         }
         $this->data['pagebody'] = 'history';
-        $this->data['history'] =  $this->getPage($page, 'b');
+        $this->data['history'] =  $this->getPage($page, 'b', $sort);
         $this->data['limiter'] = 'Build';
         $this->data['listing'] = 'Built Items';
-        $this->addPageIndexs();
+        $this->addPageIndexs($sort);
         $this->render();
     }
 
-    public function recycle($page = -1){
+    public function recycle($page = -1, $sort = 'n'){
         if($page == -1){
             $this->load->helper('url');
-            redirect('/history/recycle/1');
+            redirect('/history/recycle/1/'.$sort);
             return;
         }
         $this->data['pagebody'] = 'history';
-        $this->data['history'] =  $this->getPage($page, 'r');
+        $this->data['history'] =  $this->getPage($page, 'r', $sort);
         $this->data['limiter'] = 'Recycle';
         $this->data['listing'] = 'Recycled Items';
-        $this->addPageIndexs();
+        $this->addPageIndexs($sort);
         $this->render();
     }
 }
