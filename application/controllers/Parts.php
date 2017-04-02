@@ -13,8 +13,13 @@ class Parts extends Application
     /**
      * Homepage for our app
      */
-    public function index($page = 1)
+    public function index($page = -1)
     {
+        if ($page == -1) {
+            $this->load->helper('url');
+            redirect('parts/index/1');
+            return;
+        }
         // this is the view we want shown
         $this->data['pagebody'] = 'parts';
         $this->data['parts'] = $this->getPage($page);
