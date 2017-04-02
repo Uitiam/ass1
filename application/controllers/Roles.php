@@ -16,4 +16,13 @@ class Roles extends Application {
 		            ->set_content_type('application/json')
 		            ->set_output(json_encode(array('user'=>$role)));
 	}
+
+	public function getrole() {
+		$this->output->set_content_type('application/json');
+		$role = $_SESSION['user'];
+		
+		return $this->output
+		            ->set_content_type('application/json')
+		            ->set_output(json_encode(array('user'=>$role)));
+	}
 }

@@ -12,9 +12,7 @@ if (!defined('APPPATH'))
 ?>
 
 <div class="page-header">
-    <h1 id="userAddress">Welcome, User!</h1>
-    <br />
-    <h3>Dashboard</h3>
+    <h1>Dashboard</h1>
 </div>
 <div class="container-fluid">
     <div class="row">

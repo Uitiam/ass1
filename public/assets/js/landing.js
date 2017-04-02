@@ -2,6 +2,8 @@
 
 $(document).ready(function() {
 
+	var userRole = null;
+
 	/* Michael Goll
 	** March 30, 2017
 	** Toggles the icon to the right of the "User Roles" menu item"
@@ -16,9 +18,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$(".userBtn").click(function(e) {
-		//prevents the page from being reloaded.
-		e.preventDefault();
+	$(".userBtn").click(function() {
 
 		//worker role is selected
 		if (this.id == "workerBtn") {
@@ -26,8 +26,8 @@ $(document).ready(function() {
 			.method('get')
 			.url('/roles/setrole/Worker')
 			.on('success', function(data) {
-				document.cookie = "role=Worker";
-				$("#userAddress").text("Welcome, " + data.user + "!");
+				console.log(data);
+				userRole = data.user;
 			})
 			.go()
 
@@ -37,8 +37,8 @@ $(document).ready(function() {
 			.method('get')
 			.url('/roles/setrole/Manager')
 			.on('success', function(data) {
-				document.cookie = "role=Manager";
-				$("#userAddress").text("Welcome, " + data.user + "!");
+				console.log(data);
+				userRole = data.user;
 			})
 			.go()
 		} else {
