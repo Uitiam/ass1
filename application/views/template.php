@@ -76,11 +76,38 @@ if (!defined('APPPATH'))
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
         <!-- Optionally, you can add icons to the links -->
-        <li><a href="/"><i class="fa fa-link"></i><span>Home</span></a></li>
-        <li><a href="/parts"><i class="fa fa-link"></i><span>Parts</span></a></li>
-        <li><a href="/assembly"><i class="fa fa-link"></i><span>Assembly</span></a></li>
-        <li><a href="/history"><i class="fa fa-link"></i><span>History</span></a></li>
+        
+        <li class="sidebar-menu-item"><a href="/parts"><i class="fa fa-gear"></i><span>Parts</span></a></li>
+        <li class="sidebar-menu-item"><a href="/assembly"><i class="fa fa-wrench"></i><span>Assembly</span></a></li>
+        <li>
+          <a href="#" id="historyToggle" data-toggle="collapse" data-target="#histToggle" class="collapsed">
+            <i class="fa fa-history"></i>History<i id="histIcon" class="fa fa-chevron-down pull-right"></i>
+          </a>
+          <div class="collapse" id="histToggle">
+            <ul class="nav nav-list">
+              <li class="sidebar-menu-item"><a href="/history"><i class="fa fa-user"></i><span> All</span></a></li>
+              <li class="sidebar-menu-item"><a href="/history/buy"><i class="fa fa-shopping-basket"></i><span> Buy</span></a></li>
+              <li class="sidebar-menu-item"><a href="/history/sell"><i class="fa fa-dollar"></i><span> Sell</span></a></li>
+              <li class="sidebar-menu-item"><a href="/history/build"><i class="fa fa-wrench"></i><span> Build</span></a></li>
+              <li class="sidebar-menu-item"><a href="/history/recycle"><i class="fa fa-recycle"></i><span> Recycle</span></a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="sidebar-menu-item"><a href="/manage"><i class="fa fa-files-o"></i><span>Manage</span></a></li>
+        <li>
+          <a href="#" id="sidebarToggle" data-toggle="collapse" data-target="#userToggle" class="collapsed">
+            <i class="fa fa-user"></i>User Roles<i id="indicatorIcon" class="fa fa-chevron-down pull-right"></i>
+          </a>
+          <div class="collapse" id="userToggle">
+            <ul class="nav nav-list">
+              <li class="sidebar-menu-item userBtn" id="managerBtn"><a href="/"><i class="fa fa-user"></i><span> Manager</span></a></li>
+              <li class="sidebar-menu-item userBtn" id="workerBtn"><a href="/"><i class="fa fa-user"></i><span> Worker</span></a></li>
+            </ul>
+          </div>
+        </li>
       </ul>
+
+
       <!-- /.sidebar-menu -->
       </section>
   </aside>
@@ -114,6 +141,8 @@ if (!defined('APPPATH'))
   <script src="/assets/js/app.min.js"></script>
   <!-- Landing Page JS -->
   <script src="assets/js/landing.js"></script>
+  <!-- Manage Page JS -->
+  <script src="assets/js/manage.js"></script>
   <!-- Asembly Page JS -->
   <script src="assets/js/assembly.js"></script>
   <!-- AJA JS Source -->
