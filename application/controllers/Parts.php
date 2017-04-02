@@ -39,6 +39,22 @@ class Parts extends Application
         return file_get_contents($url);
     }
 
+    private function updateBalance() {
+        $this->output->set_content_type('application/json');
+        $key = $this->getKey();
+        if ($key == false) {
+            return $this->output
+                        ->set_content_type('application/json')
+                        ->set_output(json_encode(array(
+                                'msg' => 'No password found on server, please set one',
+                        )));
+        }
+        $url = "https://umbrella.jlparry.com/info/balance/zucchini";
+        $response = $this->makeRequest($url);
+        $response = json_decode($response);
+        $this->company->set("balance", $response);
+    }
+
     public function build() {
         $this->output->set_content_type('application/json');
         $key = $this->getKey();
@@ -70,7 +86,7 @@ class Parts extends Application
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
-                $this->history->addSell($id, $model, $autoId, 0);
+                $this->historyModel->addSell($id, $model, $autoId, 0);
             } else if ($part['piece'] == 2) {
                 $tableName = 'Torso';
                 $id = $this->db->escape($part['id']);
@@ -78,7 +94,7 @@ class Parts extends Application
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
-                $this->history->addSell($id, $model, $autoId, 0);
+                $this->historyModel->addSell($id, $model, $autoId, 0);
             } else if ($part['piece'] == 3) {
                 $tableName = 'Legs';
                 $id = $this->db->escape($part['id']);
@@ -86,10 +102,9 @@ class Parts extends Application
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
-                $this->history->addSell($id, $model, $autoId, 0);
+                $this->historyModel->addSell($id, $model, $autoId, 0);
             }
         }
-        $this->company->set('balance', $this->company->get('balance') - 100);
         return $this->output
                     ->set_content_type('application/json')
                     ->set_output(json_encode(array(
@@ -127,7 +142,7 @@ class Parts extends Application
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
-                $this->history->addBuy($model, $autoId, 10, "Worker", $id);
+                $this->historyModel->addBuy($model, $autoId, 10, "Worker", $id);
             } else if ($part['piece'] == 2) {
                 $tableName = 'Torso';
                 $id = $this->db->escape($part['id']);
@@ -135,7 +150,7 @@ class Parts extends Application
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
-                $this->history->addBuy($model, $autoId, 10, "Worker", $id);
+                $this->historyModel->addBuy($model, $autoId, 10, "Worker", $id);
             } else if ($part['piece'] == 3) {
                 $tableName = 'Legs';
                 $id = $this->db->escape($part['id']);
@@ -143,10 +158,10 @@ class Parts extends Application
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
-                $this->history->addBuy($model, $autoId, 10, "Worker", $id);
+                $this->historyModel->addBuy($model, $autoId, 10, "Worker", $id);
             }
         }
-        $this->company->set('balance', $this->company->get('balance') - 100);
+        $this->updateBalance();
         return $this->output
                     ->set_content_type('application/json')
                     ->set_output(json_encode(array(
