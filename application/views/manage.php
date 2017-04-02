@@ -44,7 +44,7 @@
                             <td>{created}</td>
                             <td>{model}</td>
                             <td>{line}</td>
-                            <td><button class="btn btn-success">Sell</button></td>
+                            <td><button id="{btnID}" class="btn btn-success sellRobotBtn">Sell</button></td>
                         </tr>
                     {/builtRobots}
                 </table>

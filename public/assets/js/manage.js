@@ -23,4 +23,19 @@ $(document).ready(function() {
 			.go()
 		}
 	})
+
+	$('.sellRobotBtn').click(function() {
+		var id = this.id;
+		console.log(id);
+
+		aja()
+			.method('get')
+			.url('/manage/getRobotToSell/' + id)
+			.on('success', function(data) {
+				console.log(data);
+				alert(data.msg);
+				location.reload();
+			})
+			.go()
+	})
 });
