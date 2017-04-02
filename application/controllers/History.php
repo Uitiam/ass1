@@ -69,12 +69,12 @@ class History extends Application
         return $result;
     }
 
-    private function addPageIndexs($sort){
-        $this->data['first'] = '/history/index/'.$this->page['first']."/$sort";
-        $this->data['prev'] = '/history/index/'.$this->page['prev']."/$sort";
+    private function addPageIndexs($sub, $sort){
+        $this->data['first'] = $sub.$this->page['first']."/$sort";
+        $this->data['prev'] = $sub.$this->page['prev']."/$sort";
         $this->data['page'] = $this->page['page'];
-        $this->data['next'] = '/history/index/'.$this->page['next']."/$sort";
-        $this->data['last'] = '/history/index/'.$this->page['last']."/$sort";
+        $this->data['next'] = $sub.$this->page['next']."/$sort";
+        $this->data['last'] = $sub.$this->page['last']."/$sort";
     }
 
     public function index($page = -1, $sort = 'n')
@@ -89,7 +89,7 @@ class History extends Application
         $this->data['history'] = $this->getPage($page, 'a', $sort);
         $this->data['limiter'] = 'All';
         $this->data['listing'] = 'Full History';
-        $this->addPageIndexs($sort);
+        $this->addPageIndexs('/history/index/',$sort);
         $this->render();
     }
 
@@ -103,7 +103,7 @@ class History extends Application
         $this->data['history'] =  $this->getPage($page, 'p', $sort);
         $this->data['limiter'] = 'Purchase';
         $this->data['listing'] = 'Purchased Items';
-        $this->addPageIndexs($sort);
+        $this->addPageIndexs('/history/buy/',$sort);
         $this->render();
     }
 
@@ -118,7 +118,7 @@ class History extends Application
         $this->data['history'] =  $this->getPage($page, 's', $sort);
         $this->data['limiter'] = 'Sell';
         $this->data['listing'] = 'Sold Items';
-        $this->addPageIndexs($sort);
+        $this->addPageIndexs('/history/sell/',$sort);
         $this->render();
     }
 
@@ -132,7 +132,7 @@ class History extends Application
         $this->data['history'] =  $this->getPage($page, 'b', $sort);
         $this->data['limiter'] = 'Build';
         $this->data['listing'] = 'Built Items';
-        $this->addPageIndexs($sort);
+        $this->addPageIndexs('/history/build/',$sort);
         $this->render();
     }
 
@@ -146,7 +146,7 @@ class History extends Application
         $this->data['history'] =  $this->getPage($page, 'r', $sort);
         $this->data['limiter'] = 'Recycle';
         $this->data['listing'] = 'Recycled Items';
-        $this->addPageIndexs($sort);
+        $this->addPageIndexs('/history/recycle/',$sort);
         $this->render();
     }
 }
