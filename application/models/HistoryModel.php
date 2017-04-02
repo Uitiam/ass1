@@ -69,7 +69,7 @@ class HistoryModel extends CI_Model {
         return $this->db->affected_rows();
     }
 
-    public function addSell($caCode, $partType, $partId, $price, $user = "Worker", $description = ""){
+    public function addSell($partType, $partId, $price, $user = "Worker", $description = ""){
         $ePt = $this->db->escape($partType);
         $ePi = $partId;
         $ePr = $this->db->escape($price);
@@ -81,7 +81,7 @@ class HistoryModel extends CI_Model {
         return $this->db->affected_rows();
     }
 
-    public function addBuild($caCode, $partType, $partId, $price, $user = "Supervisor", $description = ""){
+    public function addBuild($partType, $partId, $price, $user = "Supervisor", $description = ""){
         $ePt = $this->db->escape($partType);
         $ePi = $partId;
         $ePr = $this->db->escape($price);
@@ -93,7 +93,7 @@ class HistoryModel extends CI_Model {
         return $this->db->affected_rows();
     }
 
-    public function addRecycle($caCode, $partType, $partId, $price, $user = "Worker", $description = ""){
+    public function addRecycle($partType, $partId, $price, $user = "Worker", $description = ""){
         $ePt = $this->db->escape($partType);
         $ePi = $partId;
         $ePr = $this->db->escape($price);
