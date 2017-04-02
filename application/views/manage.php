@@ -5,8 +5,9 @@
             <div class="col-xs-12">
                 <h3>Reboot Factory</h3>
                 <p>This button will reset the factory's inventory, debt and reset the starting balance.</p>
-                <p><b class="danger">WARNING:</b> There is no turning back from this action.</p>
+                <p><b>WARNING:</b> There is no turning back from this action.</p>
                     <button class="btn btn-block btn-danger" id="rebootMeBtn">Reboot</button>
+                    <small id="rebootUpdate"></small>
             </div>
             <div class="col-xs-12">
                 <h3>PRC Registration</h3>
@@ -17,13 +18,22 @@
                     </div>
                 </form>
                 <div>
-                    <button class="btn btn-info">Register</button>
+                    <button class="btn btn-info" id="registerPRC">Register</button>
+                    <small id="updateText"></small>
                 </div>
             </div>
             <div class="col-xs-12">
                 <h3>Sell Built Robots</h3>
                 <p>This is a list of all of the previously built robots at this plant.</p>
                 <table class="table table-bordered">
+                    <th>ID</th>
+                    <th>CA Code</th>
+                    <th>Head ID</th>
+                    <th>Torso ID</th>
+                    <th>Legs ID</th>
+                    <th>Created</th>
+                    <th>Model</th>
+                    <th>Line</th>
                     {builtRobots}
                         <tr>
                             <td>{id}</td>
