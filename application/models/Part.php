@@ -28,7 +28,7 @@ class Part extends CI_Model {
         $id = $this->db->escape($cacode);
         $stamp = $this->db->escape($stamp);
         $model = $this->db->escape($model);
-        $this->db->query("INSERT INTO $tableName (CACode, used, creationTime, model) VALUES ($id, f, $stamp, $model)");
+        $this->db->query("INSERT INTO $tableName (CACode, used, creationTime, model) VALUES ($id, 'f', $stamp, $model)");
     }
 
     //returns all records matching the $value by default against the 'type' property

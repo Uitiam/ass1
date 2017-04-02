@@ -52,7 +52,7 @@ class Parts extends Application
         $url = "https://umbrella.jlparry.com/work/mybuilds?key=".$key;
 
         $response = $this->makeRequest($url);
-        $response = json_decode($response);
+        $response = json_decode($response, true);
 
         if ($response == NULL) {
             return $this->output
@@ -69,7 +69,7 @@ class Parts extends Application
                 $stamp = $this->db->escape($part['stamp']);
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
-                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
+                $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
                 $this->history->addSell($id, $model, $autoId, 0);
             } else if ($part['piece'] == 2) {
                 $tableName = 'Torso';
@@ -77,7 +77,7 @@ class Parts extends Application
                 $stamp = $this->db->escape($part['stamp']);
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
-                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
+                $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
                 $this->history->addSell($id, $model, $autoId, 0);
             } else if ($part['piece'] == 3) {
                 $tableName = 'Legs';
@@ -85,7 +85,7 @@ class Parts extends Application
                 $stamp = $this->db->escape($part['stamp']);
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
-                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
+                $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
                 $this->history->addSell($id, $model, $autoId, 0);
             }
         }
@@ -109,7 +109,7 @@ class Parts extends Application
         }
         $url = "https://umbrella.jlparry.com/work/buybox?key=" . $key;
         $response = $this->makeRequest($url);
-        $response = json_decode($response);
+        $response = json_decode($response, true);
 
         if ($response == NULL) {
             return $this->output
@@ -126,7 +126,7 @@ class Parts extends Application
                 $stamp = $this->db->escape($part['stamp']);
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
-                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
+                $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
                 $this->history->addBuy($model, $autoId, 10, "Worker", $id);
             } else if ($part['piece'] == 2) {
                 $tableName = 'Torso';
@@ -134,7 +134,7 @@ class Parts extends Application
                 $stamp = $this->db->escape($part['stamp']);
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
-                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
+                $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
                 $this->history->addBuy($model, $autoId, 10, "Worker", $id);
             } else if ($part['piece'] == 3) {
                 $tableName = 'Legs';
@@ -142,7 +142,7 @@ class Parts extends Application
                 $stamp = $this->db->escape($part['stamp']);
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
-                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
+                $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
                 $this->history->addBuy($model, $autoId, 10, "Worker", $id);
             }
         }
