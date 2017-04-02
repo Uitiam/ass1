@@ -23,21 +23,20 @@
             <div class="col-xs-12">
                 <h3>Sell Built Robots</h3>
                 <p>This is a list of all of the previously built robots at this plant.</p>
-                <table class="table table-hover">
-                    <thead class="thead-inverse">
+                <table class="table table-bordered">
+                    {builtRobots}
                         <tr>
-                            <th>Bot Name</th>
-                            <th>Head Piece</th>
-                            <th>Torso Piece</th>
-                            <th>Legs Piece</th>
-                            <th>Action</th>
+                            <td>{id}</td>
+                            <td>{cacode}</td>
+                            <td>{head}</td>
+                            <td>{torso}</td>
+                            <td>{legs}</td>
+                            <td>{created}</td>
+                            <td>{model}</td>
+                            <td>{line}</td>
+                            <td><button class="btn btn-success">Sell</button></td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            {table-content}
-                        </tr>
-                    </tbody>
+                    {/builtRobots}
                 </table>
             </div>
         </div>

@@ -25,11 +25,11 @@ if (!defined('APPPATH'))
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="assets/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="/assets/css/AdminLTE.min.css">
   <!--  AdminLTE Skins. -->
-  <link rel="stylesheet" href="assets/css/skin-green.css">
+  <link rel="stylesheet" href="/assets/css/skin-green.css">
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
 <body class="hold-transition skin-green sidebar-mini">
@@ -121,17 +121,17 @@ if (!defined('APPPATH'))
   <!-- REQUIRED JS SCRIPTS -->
 
   <!-- jQuery 2.2.3 -->
-  <script src="assets/js/jquery-2.2.3.min.js"></script>
+  <script src="/assets/js/jquery-2.2.3.min.js"></script>
   <!-- Bootstrap 3.3.7 -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <!-- AdminLTE App -->
-  <script src="assets/js/app.min.js"></script>
+  <script src="/assets/js/app.min.js"></script>
   <!-- Landing Page JS -->
   <script src="assets/js/landing.js"></script>
   <!-- Manage Page JS -->
   <script src="assets/js/manage.js"></script>
   <!-- AJA JS Source -->
-  <script src="assets/js/aja.min.js"></script>
+  <script src="/assets/js/aja.min.js"></script>
   <!-- Chart.js CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js"></script>
   </body>

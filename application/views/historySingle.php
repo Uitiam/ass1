@@ -1,10 +1,10 @@
 <div>
     <div class="page-header">
-    <h1>History <small>Listings</small></h1>
+    <h1>History <small>{limiter}</small></h1>
     </div>
     <div class="box box-success">
         <div class="box-header with-border">
-        <h2 class="box-title">Full listing</h2>
+        <h2 class="box-title">{listing}</h2>
         <div class="box-tools pull-right">
             <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
         </div>

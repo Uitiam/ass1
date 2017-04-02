@@ -28,7 +28,7 @@ class Company extends CI_Model {
 
     //update the company
     public function set($type, $value) {
-        $eT = $this->db->escape($type);
+        $eT = $type;
         $eV = $this->db->escape($value);
         $sql = "update Company set $eT = $eV where 1 = 1";
         $this->db->query($sql);
