@@ -70,7 +70,7 @@ class Part extends CI_Model {
         $sql = "select * from Torso where id=$id";
         $h = $this->db->query($sql)->result_array()[0]['model'];
         $c = $this->db->query($sql)->result_array()[0]['CACode'];
-
+        $ac = $this->company->apiKey();
         if($ac){
             $url = "https://umbrella.jlparry.com/work/recycle/$c?key=$ac";
             $response = file_get_contents($url);
