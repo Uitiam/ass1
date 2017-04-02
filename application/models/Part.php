@@ -25,6 +25,9 @@ class Part extends CI_Model {
     }
 
     public function insertPart($tableName, $cacode, $stamp, $model) {
+        $cacode = $this->db->escape($cacode);
+        $stamp = $this->db->escape($stamp);
+        $model = $this->db->escape($model);
         $this->db->query("INSERT INTO $tableName (CACode, used, creationTime, model) VALUES ($cacode, 'f', $stamp, $model)");
     }
 
