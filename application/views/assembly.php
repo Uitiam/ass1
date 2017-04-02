@@ -12,7 +12,7 @@
                         <button id="{src}" type="button" class="useHead btn btn-success btn-md" style="width:100%" title = "{title}">Use</button>
                     </div>
                     <div class="col-xs-12">
-                        <button id="{src}" type="button" class="returnPart btn btn-danger btn-md" style="width:100%" title = "{id}">Return</button>
+                        <button id="{src}" type="button" class="returnHead btn btn-danger btn-md" style="width:100%" title = "{id}">Return</button>
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                         <button id="{src}" type="button" class="useTorso btn btn-success btn-md" style="width:100%" title = "{title}">Use</button>
                     </div>
                     <div class="col-xs-12">
-                        <button id="{src}" type="button" class="returnPart btn btn-danger btn-md" style="width:100%" title = "{id}">Return</button>
+                        <button id="{src}" type="button" class="returnTorso btn btn-danger btn-md" style="width:100%" title = "{id}">Return</button>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                         <button id="{src}" type="button" class="useLegs btn btn-success btn-md" style="width:100%" title = "{title}">Use</button>
                     </div>
                     <div class="col-xs-12">
-                        <button id="{src}" type="button" class="returnPart btn btn-danger btn-md" style="width:100%" title = "{id}">Return</button>
+                        <button id="{src}" type="button" class="returnLegs btn btn-danger btn-md" style="width:100%" title = "{id}">Return</button>
                     </div>
                 </div>
             </div>

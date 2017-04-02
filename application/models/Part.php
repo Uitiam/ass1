@@ -64,4 +64,65 @@ class Part extends CI_Model {
         return $this->updateArray();
     }
 
+    public function recycleTorso($id, $type){
+        $id = $this->db->escape($id);
+
+        $sql = "select * from Torso where id=$id";
+        $h = $this->db->query($sql)->result_array()[0]['model'];
+        $c = $this->db->query($sql)->result_array()[0]['CACode'];
+        $ac = $this->company->apiKey();
+        if($ac){
+            $url = "https://umbrella.jlparry.com/work/recycle/$c?key=$ac";
+            $response = file_get_contents($url);
+            $this->updateB;
+            $this->db->query("delete from Torso where id=$id");
+
+            $this->historyModel->addBuild($h, $id, 0, "Supervisor", "Part Recycled");
+        }
+    }
+
+    public function recycleHead($id, $type){
+        $id = $this->db->escape($id);
+
+        $sql = "select * from head where id=$id";
+        $h = $this->db->query($sql)->result_array()[0]['model'];
+        $c = $this->db->query($sql)->result_array()[0]['CACode'];
+
+        $ac = $this->company->apiKey();
+        if($ac){
+            $url = "https://umbrella.jlparry.com/work/recycle/$c?key=$ac";
+            $response = file_get_contents($url);
+            $this->updateB;
+            $this->db->query("delete from Head where id=$id");
+
+            $this->historyModel->addBuild($h, $id, 0, "Supervisor", "Part Recycled");
+        }
+
+    }
+    public function recycleLegs($id){
+        $id = $this->db->escape($id);
+
+        $sql = "select * from Legs where id=$id";
+        $h = $this->db->query($sql)->result_array()[0]['model'];
+        $c = $this->db->query($sql)->result_array()[0]['CACode'];
+
+        $ac = $this->company->apiKey();
+        if($ac){
+            $url = "https://umbrella.jlparry.com/work/recycle/$c?key=$ac";
+            $response = file_get_contents($url);
+            $this->updateB;
+            $this->db->query("delete from Legs where id=$id");
+
+            $this->historyModel->addBuild($h, $id, 0, "Supervisor", "Part Recycled");
+        }
+    }
+
+    private function updateB() {
+        $key = $this->company->apiKey();
+        $url = "https://umbrella.jlparry.com/info/balance/zucchini";
+        $response = file_get_contents($url);
+        $response = json_decode($response);
+        $this->company->set("balance", $response);
+    }
+
 }
