@@ -2,8 +2,6 @@
 
 $(document).ready(function() {
 
-	var userRole = null;
-
 	/* Michael Goll
 	** March 30, 2017
 	** Toggles the icon to the right of the "User Roles" menu item"
@@ -15,6 +13,16 @@ $(document).ready(function() {
 		} else {
 			$("#indicatorIcon").removeClass("fa fa-chevron-up");
 			$("#indicatorIcon").addClass("fa fa-chevron-down");
+		}
+	});
+
+	$("#historyToggle").click(function() {
+		if ($("#histIcon").hasClass("fa fa-chevron-down")) {
+			$("#histIcon").removeClass("fa fa-chevron-down");
+			$("#histIcon").addClass("fa fa-chevron-up");
+		} else {
+			$("#histIcon").removeClass("fa fa-chevron-up");
+			$("#histIcon").addClass("fa fa-chevron-down");
 		}
 	});
 
@@ -44,5 +52,5 @@ $(document).ready(function() {
 		} else {
 			console.log("Unknown button");
 		}	
-	})
+	});
 });

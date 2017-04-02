@@ -77,10 +77,23 @@ if (!defined('APPPATH'))
       <ul class="sidebar-menu">
         <!-- Optionally, you can add icons to the links -->
         
-        <li class="sidebar-menu-item"><a href="/parts"><i class="fa fa-link"></i><span>Parts</span></a></li>
-        <li class="sidebar-menu-item"><a href="/assembly"><i class="fa fa-link"></i><span>Assembly</span></a></li>
-        <li class="sidebar-menu-item"><a href="/history"><i class="fa fa-link"></i><span>History</span></a></li>
-        <li class="sidebar-menu-item"><a href="/manage"><i class="fa fa-link"></i><span>Manage</span></a></li>
+        <li class="sidebar-menu-item"><a href="/parts"><i class="fa fa-gear"></i><span>Parts</span></a></li>
+        <li class="sidebar-menu-item"><a href="/assembly"><i class="fa fa-wrench"></i><span>Assembly</span></a></li>
+        <li>
+          <a href="#" id="historyToggle" data-toggle="collapse" data-target="#histToggle" class="collapsed">
+            <i class="fa fa-history"></i>History<i id="histIcon" class="fa fa-chevron-down pull-right"></i>
+          </a>
+          <div class="collapse" id="histToggle">
+            <ul class="nav nav-list">
+              <li class="sidebar-menu-item"><a href="/history"><i class="fa fa-user"></i><span> All</span></a></li>
+              <li class="sidebar-menu-item"><a href="/history/buy"><i class="fa fa-shopping-basket"></i><span> Buy</span></a></li>
+              <li class="sidebar-menu-item"><a href="/history/sell"><i class="fa fa-dollar"></i><span> Sell</span></a></li>
+              <li class="sidebar-menu-item"><a href="/history/build"><i class="fa fa-wrench"></i><span> Build</span></a></li>
+              <li class="sidebar-menu-item"><a href="/history/recycle"><i class="fa fa-recycle"></i><span> Recycle</span></a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="sidebar-menu-item"><a href="/manage"><i class="fa fa-files-o"></i><span>Manage</span></a></li>
         <li>
           <a href="#" id="sidebarToggle" data-toggle="collapse" data-target="#userToggle" class="collapsed">
             <i class="fa fa-user"></i>User Roles<i id="indicatorIcon" class="fa fa-chevron-down pull-right"></i>
