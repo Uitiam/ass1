@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-xs-12">
                     <div class="col-xs-12">
-                        <button id="{src}" type="button" class="useHead btn btn-success btn-md" style="width:100%" title = "{title}">Use</button>
+                        <button id="{src}" type="button" class="useHead btn btn-success btn-md" style="width:100%" title = "{id}">Use</button>
                     </div>
                     <div class="col-xs-12">
                         <button id="{src}" type="button" class="returnHead btn btn-danger btn-md" style="width:100%" title = "{id}">Return</button>
