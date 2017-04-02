@@ -8,7 +8,6 @@ class Parts extends Application
     function __construct()
     {
         parent::__construct();
-        session_start();
     }
 
     /**

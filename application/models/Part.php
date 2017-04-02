@@ -21,7 +21,7 @@ class Part extends CI_Model {
     //returns the total number of parts in stock
     public function partCount(){
         $this->updateArray();
-        return count($this->parts);
+        return count($this->all());
     }
 
     public function insertPart($tableName, $cacode, $stamp, $model) {
