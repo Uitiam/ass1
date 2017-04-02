@@ -22,10 +22,10 @@ class Parts extends Application
         // build the list of authors, to pass on to our view
         $source = $this->part->all();
         $parts = array();
-        foreach ($source as $record)
-        {
-            $parts[] = array ('src' => $record['src'], 'title' => $record['title'], 'UID'=> $record['UID'],
-            'CA'=> $record['CA'], 'PlantCode'=>$record['PlantCode'], 'datetime'=>$record['datetime']);
+        $counter = 0;
+        foreach ($source as $record) {
+            $parts[] = array ('UID' => $counter++, 'title' => $record['fullModel'], 'src' => '/parts/'.$record['fullModel'].'.jpeg', 
+                'used' => $record['used'], 'CA'=>$record['CACode'], 'datetime'=>$record['creationTime']);
         }
         $this->data['parts'] = $parts;
 
@@ -33,24 +33,11 @@ class Parts extends Application
     }
 
     private function getKey() {
-        $response = '';
-        $key = -1;
-        if (isset($_SESSION['key'])) {
-            $key = $_SESSION['key'];
-            $url = "https://umbrella.jlparry.com/info/whoami?key=" . $key;
-            $response = $this->makeRequest($url);
+        $pass = $this->db->query('SELECT * FROM Company')->result_array();
+        if (empty($pass) || empty($pass[0]['accessToken'])) {
+            return -1;
         }
-        if (strcmp($response, "zucchini") != 0) {
-            //Get password here
-            $pass = $this->db->query('select * from Company')->result_array();
-            if (empty($pass)) {
-                return -1;
-            }
-            $url = "https://umbrella.jlparry.com/work/registerme/zucchini/" . $pass[0];
-            $key = $this->makeRequest($url);
-            $_SESSION['key'] = $key;
-        }
-        return $key;
+        return $pass[0]['accessToken'];
     }
 
     private function makeRequest($url) {
@@ -74,24 +61,44 @@ class Parts extends Application
                                 'msg' => 'No password found on server, please set one',
                         )));
         }
-        $url = "https://umbrella.jlparry.com/work/mybuilds?key=" . $key;
+        $url = "https://umbrella.jlparry.com/work/mybuilds?key=".$key;
+
         $response = $this->makeRequest($url);
-        echo $response;
         $response = json_decode($response);
+
+        if ($response == NULL) {
+            return $this->output
+                        ->set_content_type('application/json')
+                        ->set_output(json_encode(array(
+                                'msg' => 'Server returned invalid format',
+                        )));
+        }
 
         foreach ($response as $part) {
             if ($part['piece'] == 1) {
                 $tableName = 'Head';
-                $this->db->query('INSERT into ' . $tableName . ' (CACODE, used, creationTime, model) VALUES (' . $this->db->escape($part['id']) . ', f, \
-                    ' . $this->db->escape($part['stamp']) . ', ' . $this->db->escape($part['model']) . ')');
+                $id = $this->db->escape($part['id']);
+                $stamp = $this->db->escape($part['stamp']);
+                $model = $this->db->escape($part['model']);
+                $this->part->insertPart($tableName, $id, $stamp, $model);
+                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
+                $this->history->addSell($id, $model, $autoId, 0);
             } else if ($part['piece'] == 2) {
                 $tableName = 'Torso';
-                $this->db->query('INSERT into ' . $tableName . ' (CACODE, used, creationTime, model) VALUES (' . $this->db->escape($part['id']) . ', f, \
-                    ' . $this->db->escape($part['stamp']) . ', ' . $this->db->escape($part['model']) . ')');
+                $id = $this->db->escape($part['id']);
+                $stamp = $this->db->escape($part['stamp']);
+                $model = $this->db->escape($part['model']);
+                $this->part->insertPart($tableName, $id, $stamp, $model);
+                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
+                $this->history->addSell($id, $model, $autoId, 0);
             } else if ($part['piece'] == 3) {
                 $tableName = 'Legs';
-                $this->db->query('INSERT into ' . $tableName . ' (CACODE, used, creationTime, model) VALUES (' . $this->db->escape($part['id']) . ', f, \
-                    ' . $this->db->escape($part['stamp']) . ', ' . $this->db->escape($part['model']) . ')');
+                $id = $this->db->escape($part['id']);
+                $stamp = $this->db->escape($part['stamp']);
+                $model = $this->db->escape($part['model']);
+                $this->part->insertPart($tableName, $id, $stamp, $model);
+                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
+                $this->history->addSell($id, $model, $autoId, 0);
             }
         }
         return $this->output
@@ -113,22 +120,41 @@ class Parts extends Application
         }
         $url = "https://umbrella.jlparry.com/work/buybox?key=" . $key;
         $response = $this->makeRequest($url);
-        echo $response;
         $response = json_decode($response);
+
+        if ($response == NULL) {
+            return $this->output
+                        ->set_content_type('application/json')
+                        ->set_output(json_encode(array(
+                                'msg' => 'Server returned invalid format',
+                        )));
+        }
 
         foreach ($response as $part) {
             if ($part['piece'] == 1) {
                 $tableName = 'Head';
-                $this->db->query('INSERT into ' . $tableName . ' (CACODE, used, creationTime, model) VALUES (' . $this->db->escape($part['id']) . ', f, \
-                    ' . $this->db->escape($part['stamp']) . ', ' . $this->db->escape($part['model']) . ')');
+                $id = $this->db->escape($part['id']);
+                $stamp = $this->db->escape($part['stamp']);
+                $model = $this->db->escape($part['model']);
+                $this->part->insertPart($tableName, $id, $stamp, $model);
+                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
+                $this->history->addBuy($model, $autoId, 10, "Worker", $id);
             } else if ($part['piece'] == 2) {
                 $tableName = 'Torso';
-                $this->db->query('INSERT into ' . $tableName . ' (CACODE, used, creationTime, model) VALUES (' . $this->db->escape($part['id']) . ', f, \
-                    ' . $this->db->escape($part['stamp']) . ', ' . $this->db->escape($part['model']) . ')');
+                $id = $this->db->escape($part['id']);
+                $stamp = $this->db->escape($part['stamp']);
+                $model = $this->db->escape($part['model']);
+                $this->part->insertPart($tableName, $id, $stamp, $model);
+                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
+                $this->history->addBuy($model, $autoId, 10, "Worker", $id);
             } else if ($part['piece'] == 3) {
                 $tableName = 'Legs';
-                $this->db->query('INSERT into ' . $tableName . ' (CACODE, used, creationTime, model) VALUES (' . $this->db->escape($part['id']) . ', f, \
-                    ' . $this->db->escape($part['stamp']) . ', ' . $this->db->escape($part['model']) . ')');
+                $id = $this->db->escape($part['id']);
+                $stamp = $this->db->escape($part['stamp']);
+                $model = $this->db->escape($part['model']);
+                $this->part->insertPart($tableName, $id, $stamp, $model);
+                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
+                $this->history->addBuy($model, $autoId, 10, "Worker", $id);
             }
         }
         return $this->output
@@ -137,5 +163,4 @@ class Parts extends Application
                             'msg' => 'Request finished successfully',
                     )));
     }
-
 }
