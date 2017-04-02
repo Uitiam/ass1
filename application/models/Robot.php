@@ -2,13 +2,6 @@
 
 class Robot extends CI_Model {
 
-    //mock data array
-    var $robots = array(
-        array('id'=>'1', 'bot'=> 'motley', 'price'=> '25', 'head'=>'m', 'torso'=>'r', 'leg'=>'a'),
-        array('id'=>'2', 'bot'=> 'butler', 'price'=> '100','head'=>'m', 'torso'=>'m', 'leg'=>'m'),
-        array('id'=>'3', 'bot'=> 'motley', 'price'=> '25', 'head'=>'m', 'torso'=>'r', 'leg'=>'a'),
-    );
-
     // Constructor
     public function __construct()
     {
@@ -20,8 +13,8 @@ class Robot extends CI_Model {
     {
         $records = array();
         foreach($this->robots as $record)
-            if($records[$type] == $value)
-                $records[] = $record;
+        if($records[$type] == $value)
+        $records[] = $record;
         return $records;
     }
 
@@ -36,5 +29,51 @@ class Robot extends CI_Model {
         return $this->robots;
     }
 
+    /*
+    *Add Robot
+    */
+    public function addRobot($part1, $part2, $part3){
 
+        $eV = $this->db->escape($part1);
+        $sql = "select * from head where id=1";
+        $h = $this->db->query($sql)->result_array()[0]['model'];
+
+        $eV = $this->db->escape($part2);
+        $sql = "select * from torso where id=1";
+        $t = $this->db->query($sql)->result_array()[0]['model'];
+
+        $eV = $this->db->escape($part3);
+        $sql = "select * from legs where id=1";
+        $l = $this->db->query($sql)->result_array()[0]['model'];
+
+        $hModel = $this->partModel($h);
+        $tModel = $this->partModel($t);
+        $lModel = $this->partModel($l);
+        $model = "!";
+
+        if(strcmp($hModel, $tModel) == 0 && strcmp($hModel, $lModel) == 0){
+            if(strcmp($h, $t) == 0 && strcmp($h, $l) == 0){
+                $model = strtoupper($hModel);
+            } else {
+                $model = $hModel;
+            }
+        }
+
+        $p1 = $this->db->escape($part1);
+        $p2 = $this->db->escape($part2);
+        $p3 = $this->db->escape($part3);
+
+        $this->db->query("insert into Robot(headId, torsoId, legsId, used, model)
+        VALUES ($p1, $p2, $p3, 'f', '$model')");
+    }
+
+    public function partModel($model){
+        if(strcmp("$model", "l") > 0){
+            return 'h';
+        } else if (strcmp("$model", "l") > 0){
+            return 'b';
+        } else {
+            return 'c';
+        }
+    }
 }

@@ -135,5 +135,6 @@ $autoload['language'] = array();
 $autoload['model'] = array(
     'part',
     'company',
-    'historyModel'
+    'historyModel',
+    'robot'
 );
