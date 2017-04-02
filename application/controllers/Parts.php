@@ -33,7 +33,7 @@ class Parts extends Application
     }
 
     private function getKey() {
-        $pass = $this->db->query('select * from Company')->result_array();
+        $pass = $this->db->query('SELECT * FROM Company')->result_array();
         if (empty($pass) || empty($pass[0]['accessToken'])) {
             return -1;
         }
@@ -81,7 +81,7 @@ class Parts extends Application
                 $stamp = $this->db->escape($part['stamp']);
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
-                $autoId = $this->db->query("select LAST(id) FROM $tableName");
+                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
                 $this->history->addSell($id, $model, $autoId, 0);
             } else if ($part['piece'] == 2) {
                 $tableName = 'Torso';
@@ -89,7 +89,7 @@ class Parts extends Application
                 $stamp = $this->db->escape($part['stamp']);
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
-                $autoId = $this->db->query("select LAST(id) FROM $tableName");
+                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
                 $this->history->addSell($id, $model, $autoId, 0);
             } else if ($part['piece'] == 3) {
                 $tableName = 'Legs';
@@ -97,7 +97,7 @@ class Parts extends Application
                 $stamp = $this->db->escape($part['stamp']);
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
-                $autoId = $this->db->query("select LAST(id) FROM $tableName");
+                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
                 $this->history->addSell($id, $model, $autoId, 0);
             }
         }
@@ -137,7 +137,7 @@ class Parts extends Application
                 $stamp = $this->db->escape($part['stamp']);
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
-                $autoId = $this->db->query("select LAST(id) FROM $tableName");
+                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
                 $this->history->addBuy($model, $autoId, 10, "Worker", $id);
             } else if ($part['piece'] == 2) {
                 $tableName = 'Torso';
@@ -145,7 +145,7 @@ class Parts extends Application
                 $stamp = $this->db->escape($part['stamp']);
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
-                $autoId = $this->db->query("select LAST(id) FROM $tableName");
+                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
                 $this->history->addBuy($model, $autoId, 10, "Worker", $id);
             } else if ($part['piece'] == 3) {
                 $tableName = 'Legs';
@@ -153,7 +153,7 @@ class Parts extends Application
                 $stamp = $this->db->escape($part['stamp']);
                 $model = $this->db->escape($part['model']);
                 $this->part->insertPart($tableName, $id, $stamp, $model);
-                $autoId = $this->db->query("select LAST(id) FROM $tableName");
+                $autoId = $this->db->query("SELECT LAST(id) FROM $tableName");
                 $this->history->addBuy($model, $autoId, 10, "Worker", $id);
             }
         }

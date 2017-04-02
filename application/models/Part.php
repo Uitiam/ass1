@@ -12,9 +12,9 @@ class Part extends CI_Model {
     }
 
     private function updateArray() {
-        $query = 'select CACode, used, creationTime, concat(model, 1) as fullModel From Head
-            union select CACode, used, creationTime, concat(model, 2) as fullModel From Torso
-            union select CACode, used, creationTime, concat(model, 3) as fullModel From Legs';
+        $query = 'SELECT CACode, used, creationTime, CONCAT(model, 1) AS fullModel FROM Head
+            UNION SELECT CACode, used, CreationTime, CONCAT(model, 2) AS fullModel FROM Torso
+            UNION SELECT CACode, used, CreationTime, CONCAT(model, 3) AS fullModel FROM Legs';
         return $this->db->query($query)->result_array();
     }
 
@@ -28,7 +28,7 @@ class Part extends CI_Model {
         $id = $this->db->escape($cacode);
         $stamp = $this->db->escape($stamp);
         $model = $this->db->escape($model);
-        $this->db->query("INSERT into $tableName (CACode, used, creationTime, model) VALUES ($id, f, $stamp, $model)");
+        $this->db->query("INSERT INTO $tableName (CACode, used, creationTime, model) VALUES ($id, f, $stamp, $model)");
     }
 
     //returns all records matching the $value by default against the 'type' property
