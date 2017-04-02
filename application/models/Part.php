@@ -13,8 +13,8 @@ class Part extends CI_Model {
 
     private function updateArray() {
         $query = 'SELECT CACode, used, creationTime, CONCAT(model, 1) AS fullModel FROM Head
-            UNION SELECT CACode, used, CreationTime, CONCAT(model, 2) AS fullModel FROM Torso
-            UNION SELECT CACode, used, CreationTime, CONCAT(model, 3) AS fullModel FROM Legs';
+            UNION SELECT CACode, used, creationTime, CONCAT(model, 2) AS fullModel FROM Torso
+            UNION SELECT CACode, used, creationTime, CONCAT(model, 3) AS fullModel FROM Legs';
         return $this->db->query($query)->result_array();
     }
 
