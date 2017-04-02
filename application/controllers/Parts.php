@@ -23,11 +23,7 @@ class Parts extends Application
         $source = $this->part->all();
         $parts = array();
         $counter = 0;
-        foreach ($source as $record)
-        {
-            //$parts[] = array ('src' => $record['src'], 'title' => $record['title'], 'UID'=> $record['UID'],
-            //'CA'=> $record['CA'], 'PlantCode'=>$record['PlantCode'], 'datetime'=>$record['datetime']);
-            
+        foreach ($source as $record) {
             $parts[] = array ('UID' => $counter++, 'title' => $record['fullModel'], 'src' => '/parts/'.$record['fullModel'].'.jpeg', 
                 'used' => $record['used'], 'CA'=>$record['CACode'], 'datetime'=>$record['creationTime']);
         }
@@ -37,26 +33,11 @@ class Parts extends Application
     }
 
     private function getKey() {
-        $response = '';
-        $key = -1;
-        if (isset($_SESSION['key'])) {
-            $key = $_SESSION['key'];
-            $url = "https://umbrella.jlparry.com/info/whoami?key=" . $key;
-            $response = $this->makeRequest($url);
+        $pass = $this->db->query('select * from Company')->result_array();
+        if (empty($pass) || empty($pass[0]['accessToken'])) {
+            return -1;
         }
-        if (strpos($response, "zucchini") !== true) {
-            //Get password here
-            $pass = $this->db->query('select * from Company')->result_array();
-            if (empty($pass)) {
-                return -1;
-            }
-
-            $url = "https://umbrella.jlparry.com/work/registerme/zucchini/" . $pass[0]['accessToken'];
-            $key = $this->makeRequest($url);
-            $key = trim(strstr($key, " "));
-            $_SESSION['key'] = $key;
-        }
-        return $key;
+        return $pass[0]['accessToken'];
     }
 
     private function makeRequest($url) {
