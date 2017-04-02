@@ -114,5 +114,6 @@ class Assembly extends Application
                     ->set_output(json_encode(array(
                             'msg' => 'Bot Built',
                     )));
+
        }
 }

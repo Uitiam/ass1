@@ -84,7 +84,7 @@ class Part extends CI_Model {
     public function recycleHead($id, $type){
         $id = $this->db->escape($id);
 
-        $sql = "select * from head where id=$id";
+        $sql = "select * from Head where id=$id";
         $h = $this->db->query($sql)->result_array()[0]['model'];
         $c = $this->db->query($sql)->result_array()[0]['CACode'];
 
