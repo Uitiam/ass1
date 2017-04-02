@@ -36,9 +36,9 @@ class Parts extends Application
 
     public function getPage($page = 1) {
         $vals = $this->part->all();
-        $start = ($page - 1) * 10;
-        $limited = array_slice($vals, $start, 10);
-        $total = intval(count($vals) / 10) + 1;
+        $start = ($page - 1) * 12;
+        $limited = array_slice($vals, $start, 12);
+        $total = intval(count($vals) / 12) + 1;
         $result = array();
         $this->page['first'] = 1;
         $this->page['page'] = $page;

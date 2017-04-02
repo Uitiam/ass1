@@ -6,20 +6,30 @@
         <button id="{title}" type="button" onclick="build()" class="btn btn-success btn-sm" style="width: 200px">Build More Parts</button>
         <button id="{title}" type="button" onclick="buy()" class="btn btn-danger btn-sm" style="width: 200px">Buy More Parts</button>
     </div>
-    <div class="box-tools pull-right">
-        <button class="btn btn-box-tool">
-            <a href="{first}"><i class="fa fa-step-backward"></i></a>
-        </button>
-        <button class="btn btn-box-tool">
-            <a href="{prev}"><i class="fa fa-arrow-left"></i></a>
-        </button>
-        <button class="btn btn-box-tool">{page}</button>
-        <button class="btn btn-box-tool">
-            <a href="{next}"<i class="fa fa-arrow-right"></i></a>
-        </button>
-        <button class="btn btn-box-tool">
-            <a href="{last}"><i class="fa fa-step-forward"></i></a>
-        </button>
+    <div class="row">
+        <div class="pull-right">
+            <a href="{first}">
+                <button class="btn btn-box-tool">
+                    <i class="fa fa-step-backward"></i>
+                </button>
+            </a>
+            <a href="{prev}">
+                <button class="btn btn-box-tool">
+                   <i class="fa fa-arrow-left"></i>
+                </button>
+            </a>
+            <button class="btn btn-box-tool">{page}</button>
+            <a href="{next}">
+                <button class="btn btn-box-tool">
+                    <i class="fa fa-arrow-right"></i>
+                </button>
+            </a>
+            <a href="{last}">
+                <button class="btn btn-box-tool">
+                    <i class="fa fa-step-forward"></i>
+                </button>
+            </a>
+        </div>
     </div>
     </div>
     <div class="row">
