@@ -1,6 +1,11 @@
+<script src="assets/js/parts.js"></script>
 <div>
     <div class="page-header">
     <h1>Parts <small>Full catalog</small></h1>
+    <div align="center">
+        <button id="{title}" type="button" onclick="build()" class="btn btn-success btn-sm" style="width: 200px">Build More Parts</button>
+        <button id="{title}" type="button" onclick="buy()" class="btn btn-danger btn-sm" style="width: 200px">Buy More Parts</button>
+    </div>
     </div>
     <div class="row">
     {parts}
@@ -22,12 +27,12 @@
                         <div class="item col-xs-12" style="height:200px;">
                             <table class="table">
                                 <tr>
-                                    <td>UID </td><td> {UID}</td>
-                                </tr><tr>
                                     <td>Certificate of Authority </td><td> {CA}</td>
-                                </tr><tr>
-                                    <td>Origin Plant </td><td> {PlantCode}</td>
-                                </tr><tr>
+                                </tr>
+                                <tr>
+                                    <td>Used</td><td> {used}</td>
+                                </tr>
+                                <tr>
                                     <td>Date of Creation </td><td> {datetime}</td>
                                 </tr>
                             </table>
@@ -41,8 +46,4 @@
         </div>
     </div>
     {/parts}
-    <div align="center">
-        <button id="{title}" type="button" class="btn btn-success btn-sm" style="width: 200px">Build More Parts</button>
-        <button id="{title}" type="button" class="btn btn-danger btn-sm" style="width: 200px">Buy More Parts</button>
-    </div>
 </div>
