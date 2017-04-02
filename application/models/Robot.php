@@ -35,15 +35,15 @@ class Robot extends CI_Model {
     public function addRobot($part1, $part2, $part3){
 
         $eV = $this->db->escape($part1);
-        $sql = "select * from head where id=$eV";
+        $sql = "select * from Head where id=$eV";
         $h = $this->db->query($sql)->result_array()[0]['model'];
 
         $eV = $this->db->escape($part2);
-        $sql = "select * from torso where id=$eV";
+        $sql = "select * from Torso where id=$eV";
         $t = $this->db->query($sql)->result_array()[0]['model'];
 
         $eV = $this->db->escape($part3);
-        $sql = "select * from legs where id=$eV";
+        $sql = "select * from Legs where id=$eV";
         $l = $this->db->query($sql)->result_array()[0]['model'];
 
         $hModel = $this->partModel($h);
