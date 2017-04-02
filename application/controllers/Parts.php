@@ -94,7 +94,7 @@ class Parts extends Application
                 $model = $part['model'];
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
-                $this->historyModel->addBuild($id, $model, $autoId, 0);
+                $this->historyModel->addBuild($model, $autoId, 0, "Supervisor", $id);
             } else if ($part['piece'] == 2) {
                 $tableName = 'Torso';
                 $id = $part['id'];
@@ -102,7 +102,7 @@ class Parts extends Application
                 $model = $part['model'];
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
-                $this->historyModel->addBuild($id, $model, $autoId, 0);
+                $this->historyModel->addBuild($model, $autoId, 0, "Supervisor", $id);
             } else if ($part['piece'] == 3) {
                 $tableName = 'Legs';
                 $id = $part['id'];
@@ -110,7 +110,7 @@ class Parts extends Application
                 $model = $part['model'];
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
-                $this->historyModel->addBuild($id, $model, $autoId, 0);
+                $this->historyModel->addBuild($model, $autoId, 0, "Supervisor", $id);
             }
         }
         return $this->output

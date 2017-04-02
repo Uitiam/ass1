@@ -1,4 +1,4 @@
-<script src="assets/js/parts.js"></script>
+<script src="/assets/js/parts.js"></script>
 <div>
     <div class="page-header">
     <h1>Parts <small>Full catalog</small></h1>
