@@ -13,22 +13,30 @@ class Parts extends Application
     /**
      * Homepage for our app
      */
-    public function index()
+    public function index($page = -1)
     {
+        if ($page == -1) {
+            $this->load->helper('url');
+            redirect('parts/index/1');
+            return;
+        }
         // this is the view we want shown
         $this->data['pagebody'] = 'parts';
+        $this->data['parts'] = $this->getPage($page);
+        $this->render();
+    }
 
-        // build the list of authors, to pass on to our view
-        $source = $this->part->all();
-        $parts = array();
+    public function getPage($page = 1) {
+        $vals = $this->part->all();
+        $start = ($page - 1) * 10;
+        $limited = array_slice($vals, $start, 10);
+        $result = array();
         $counter = 0;
-        foreach ($source as $record) {
-            $parts[] = array ('UID' => $counter++, 'title' => $record['fullModel'], 'src' => '/parts/'.$record['fullModel'].'.jpeg', 
+        foreach ($limited as $record) {
+            $result[] = array ('title' => $record['fullModel'], 'src' => '/parts/'.$record['fullModel'].'.jpeg', 
                 'used' => $record['used'], 'CA'=>$record['CACode'], 'datetime'=>$record['creationTime']);
         }
-        $this->data['parts'] = $parts;
-
-        $this->render();
+        return $result;
     }
 
     private function getKey() {
@@ -86,7 +94,7 @@ class Parts extends Application
                 $model = $part['model'];
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
-                $this->historyModel->addSell($id, $model, $autoId, 0);
+                $this->historyModel->addBuild($id, $model, $autoId, 0);
             } else if ($part['piece'] == 2) {
                 $tableName = 'Torso';
                 $id = $part['id'];
@@ -94,7 +102,7 @@ class Parts extends Application
                 $model = $part['model'];
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
-                $this->historyModel->addSell($id, $model, $autoId, 0);
+                $this->historyModel->addBuild($id, $model, $autoId, 0);
             } else if ($part['piece'] == 3) {
                 $tableName = 'Legs';
                 $id = $part['id'];
@@ -102,7 +110,7 @@ class Parts extends Application
                 $model = $part['model'];
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
-                $this->historyModel->addSell($id, $model, $autoId, 0);
+                $this->historyModel->addBuild($id, $model, $autoId, 0);
             }
         }
         return $this->output
