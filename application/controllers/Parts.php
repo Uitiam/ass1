@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Parts extends Application
 {
+    private $page = array();
 
     function __construct()
     {
@@ -23,6 +24,13 @@ class Parts extends Application
         // this is the view we want shown
         $this->data['pagebody'] = 'parts';
         $this->data['parts'] = $this->getPage($page);
+
+        $this->data['first'] = '/parts/index/'.$this->page['first'];
+        $this->data['prev'] = '/parts/index/'.$this->page['prev'];
+        $this->data['page'] = $this->page['page'];
+        $this->data['next'] = '/parts/index/'.$this->page['next'];
+        $this->data['last'] = '/parts/index/'.$this->page['last'];
+
         $this->render();
     }
 
@@ -30,8 +38,30 @@ class Parts extends Application
         $vals = $this->part->all();
         $start = ($page - 1) * 10;
         $limited = array_slice($vals, $start, 10);
+        $total = intval(count($vals) / 10) + 1;
         $result = array();
-        $counter = 0;
+        $this->page['first'] = 1;
+        $this->page['page'] = $page;
+        $this->page['prev'] = $page - 1;
+        $this->page['next'] = $page + 1;
+        $this->page['last'] = $total;
+        if($page < 2){
+            $this->page['prev'] = 1;
+        }
+        if($page + 1 > $total){
+            $this->page['next'] = $total;
+        }
+
+        if($page > $total){
+            $this->load->helper('url');
+            redirect("/parts/index/$total");
+            return;
+        } else if ($page < 1){
+            $this->load->helper('url');
+            redirect("/parts/index/1");
+            return;
+        }
+
         foreach ($limited as $record) {
             $result[] = array ('title' => $record['fullModel'], 'src' => '/parts/'.$record['fullModel'].'.jpeg', 
                 'used' => $record['used'], 'CA'=>$record['CACode'], 'datetime'=>$record['creationTime']);
