@@ -3,8 +3,11 @@ $(document).ready(function() {
 		aja()
 			.method('get')
 			.url('/manage/reboot')
-			.on('success', function() {
-				$('#rebootUpdate').text("Reboot Successful");
+			.on('success', function(data) {
+				if (data != null)
+					$('#rebootUpdate').text(data.msg);
+
+				$('#rebootUpdate').text('Reboot Successful.');
 			})
 			.go()
 	})

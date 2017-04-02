@@ -19,13 +19,20 @@ class Manage extends Application {
 	*/
 	public function reboot() {
 		$this->output->set_content_type('application/json');
-		$url = "https://umbrella.jlparry.com/work/rebootme/";
+		$key = $this->company->apiKey();
+
+		$url = "https://umbrella.jlparry.com/work/rebootme?key=" . $key;
 
 		if (strcmp($_SESSION['user'], "Manager") == 0) {
 			$result = file_get_contents($url);
 
 			if ($result == 'Ok') {
-				$this->manageModel->reboot();
+				//wipe the database
+				$response = $this->manageModel->reboot();
+
+				return $this->output
+			            ->set_content_type('application/json')
+			            ->set_output(json_encode(array('msg'=>'Reboot successful, ' . $response . ' rows affected.')));
 			} else {
 				return $this->output
 			            ->set_content_type('application/json')
@@ -50,10 +57,12 @@ class Manage extends Application {
 		            ->set_content_type('application/json')
 		            ->set_output(json_encode(array('msg'=>'You are not a manager.')));
 		} else {
+			$this->manageModel->reboot();
 			$result = file_get_contents($url);
-				return $this->output
-		            ->set_content_type('application/json')
-		            ->set_output(json_encode(array('msg'=>$result)));
+
+			return $this->output
+	            ->set_content_type('application/json')
+	            ->set_output(json_encode(array('msg'=>$result)));
 		}
 	}
 
