@@ -36,6 +36,9 @@ class Welcome extends Application
     $this->drawGraph();
 
     $this->render();
+
+    //start the PHP session
+    session_start();
   }
 
   //displays the total number of parts in inventory
