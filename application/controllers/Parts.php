@@ -81,25 +81,25 @@ class Parts extends Application
         foreach ($response as $part) {
             if ($part['piece'] == 1) {
                 $tableName = 'Head';
-                $id = $this->db->escape($part['id']);
-                $stamp = $this->db->escape($part['stamp']);
-                $model = $this->db->escape($part['model']);
+                $id = $part['id'];
+                $stamp = $part['stamp'];
+                $model = $part['model'];
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
                 $this->historyModel->addSell($id, $model, $autoId, 0);
             } else if ($part['piece'] == 2) {
                 $tableName = 'Torso';
-                $id = $this->db->escape($part['id']);
-                $stamp = $this->db->escape($part['stamp']);
-                $model = $this->db->escape($part['model']);
+                $id = $part['id'];
+                $stamp = $part['stamp'];
+                $model = $part['model'];
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
                 $this->historyModel->addSell($id, $model, $autoId, 0);
             } else if ($part['piece'] == 3) {
                 $tableName = 'Legs';
-                $id = $this->db->escape($part['id']);
-                $stamp = $this->db->escape($part['stamp']);
-                $model = $this->db->escape($part['model']);
+                $id = $part['id'];
+                $stamp = $part['stamp'];
+                $model = $part['model'];
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
                 $this->historyModel->addSell($id, $model, $autoId, 0);
@@ -137,25 +137,25 @@ class Parts extends Application
         foreach ($response as $part) {
             if ($part['piece'] == 1) {
                 $tableName = 'Head';
-                $id = $this->db->escape($part['id']);
-                $stamp = $this->db->escape($part['stamp']);
-                $model = $this->db->escape($part['model']);
+                $id = $part['id'];
+                $stamp = $part['stamp'];
+                $model = $part['model'];
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
                 $this->historyModel->addBuy($model, $autoId, 10, "Worker", $id);
             } else if ($part['piece'] == 2) {
                 $tableName = 'Torso';
-                $id = $this->db->escape($part['id']);
-                $stamp = $this->db->escape($part['stamp']);
-                $model = $this->db->escape($part['model']);
+                $id = $part['id'];
+                $stamp = $part['stamp'];
+                $model = $part['model'];
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
                 $this->historyModel->addBuy($model, $autoId, 10, "Worker", $id);
             } else if ($part['piece'] == 3) {
                 $tableName = 'Legs';
-                $id = $this->db->escape($part['id']);
-                $stamp = $this->db->escape($part['stamp']);
-                $model = $this->db->escape($part['model']);
+                $id = $part['id'];
+                $stamp = $part['stamp'];
+                $model = $part['model'];
                 $this->part->insertPart($tableName, $id, $stamp, $model);
                 $autoId = $this->db->query("SELECT id FROM $tableName ORDER BY id DESC LIMIT 1")->result_array()[0]['id'];
                 $this->historyModel->addBuy($model, $autoId, 10, "Worker", $id);
