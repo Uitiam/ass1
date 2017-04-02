@@ -33,11 +33,7 @@ class Parts extends Application
     }
 
     private function getKey() {
-        $pass = $this->db->query('SELECT * FROM Company')->result_array();
-        if (empty($pass) || empty($pass[0]['accessToken'])) {
-            return -1;
-        }
-        return $pass[0]['accessToken'];
+        return $this->company->apiKey();
     }
 
     private function makeRequest($url) {
@@ -54,7 +50,7 @@ class Parts extends Application
     public function build() {
         $this->output->set_content_type('application/json');
         $key = $this->getKey();
-        if ($key == -1) {
+        if ($key == false) {
             return $this->output
                         ->set_content_type('application/json')
                         ->set_output(json_encode(array(
@@ -101,6 +97,7 @@ class Parts extends Application
                 $this->history->addSell($id, $model, $autoId, 0);
             }
         }
+        $this->company->set('balance', $this->company->get('balance') - 100);
         return $this->output
                     ->set_content_type('application/json')
                     ->set_output(json_encode(array(
@@ -111,7 +108,7 @@ class Parts extends Application
     public function buy() {
         $this->output->set_content_type('application/json');
         $key = $this->getKey();
-        if ($key == -1) {
+        if ($key == false) {
             return $this->output
                         ->set_content_type('application/json')
                         ->set_output(json_encode(array(
@@ -157,6 +154,7 @@ class Parts extends Application
                 $this->history->addBuy($model, $autoId, 10, "Worker", $id);
             }
         }
+        $this->company->set('balance', $this->company->get('balance') - 100);
         return $this->output
                     ->set_content_type('application/json')
                     ->set_output(json_encode(array(
