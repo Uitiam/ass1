@@ -6,8 +6,8 @@
                 <div class="col-xs-4" style="margin-bottom: 20px;">
                     <img class="img-responsive img-rounded" src="/assets/img/{src}" title="{title}"/>
                     <div align="center">
-                        <button id="{title}" type="button" class="btn btn-success btn-sm" style="width: 90px">Use</button>
-                        <button id="{title}" type="button" class="btn btn-danger btn-sm" style="width: 90px">Return</button>
+                        <button id="{src}" type="button" class="useHead btn btn-success btn-sm" style="width: 90px" title = "{title}">Use</button>
+                        <button id="{src}" type="button" class="returnPart btn btn-danger btn-sm" style="width: 90px" title = "{id}">Return</button>
                     </div>
                 </div>
             {/heads}
@@ -18,8 +18,8 @@
                 <div class="col-xs-4" style="margin-bottom: 20px;">
                     <img class="img-responsive img-rounded" src="/assets/img/{src}" title="{title}"/>
                     <div align="center">
-                        <button id="{title}" type="button" class="btn btn-success btn-sm" style="width: 90px">Use</button>
-                        <button id="{title}" type="button" class="btn btn-danger btn-sm" style="width: 90px">Return</button>
+                        <button id="{src}" type="button" class="useTorso btn btn-success btn-sm" style="width: 90px" title = "{title}">Use</button>
+                        <button id="{src}" type="button" class=" returnPart btn btn-danger btn-sm" style="width: 90px" title = "{id}">Return</button>
                     </div>
                 </div>
             {/torso}
@@ -30,8 +30,8 @@
                 <div class="col-xs-4" style="margin-bottom: 20px;" >
                     <img class="img-responsive img-rounded" src="/assets/img/{src}" title="{title}"/>
                     <div align="center">
-                        <button id="{title}" type="button" class="btn btn-success btn-sm" style="width: 90px">Use</button>
-                        <button id="{title}" type="button" class="btn btn-danger btn-sm" style="width: 90px">Return</button>
+                        <button id="{src}" type="button" class="useLegs btn btn-success btn-sm" style="width: 90px" title = "{title}">Use</button>
+                        <button id="{src}" type="button" class="returnPart btn btn-danger btn-sm" style="width: 90px" title = "{id}">Return</button>
                     </div>
                 </div>
             {/legs}
@@ -43,27 +43,27 @@
     <div class="container-fluid col-xs-12 col-md-5 col-lg-5">
             {robotHead}
             <div class="thumbnail">
-                <img class="img-responsive img-rounded" src="/assets/img/{src}" title="{title}"/>
+                <img id="botHead" class="img-responsive img-rounded" src="/assets/img/{src}" title="{id}"/>
                 <div class="caption">
                 </div>
             </div>
             {/robotHead}
             {robotTorso}
             <div class="thumbnail">
-                <img class="img-responsive img-rounded" src="/assets/img/{src}" title="{title}"/>
+                <img id="botTorso" class="img-responsive img-rounded" src="/assets/img/{src}" title="{id}"/>
                 <div class="caption">
                 </div>
             </div>
             {/robotTorso}
             {robotLegs}
             <div class="thumbnail">
-                <img class="img-responsive img-rounded" src="/assets/img/{src}" title="{title}"/>
+                <img id="botLegs" class="img-responsive img-rounded" src="/assets/img/{src}" title="{id}"/>
                 <div class="caption">
                 </div>
             </div>
             {/robotLegs}
             <div align="right">
-                <button id="{title}" type="button" class="btn btn-success btn-md">Build Robot</button>
+                <button id="{title}" type="button" class="buildBot btn btn-success btn-md">Build Robot</button>
             </div>
     </div>
 </div>

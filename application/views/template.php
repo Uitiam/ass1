@@ -64,7 +64,7 @@ if (!defined('APPPATH'))
      <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          
+
         </div>
         <div class="pull-left info">
           <!-- Status -->
@@ -114,6 +114,8 @@ if (!defined('APPPATH'))
   <script src="assets/js/app.min.js"></script>
   <!-- Landing Page JS -->
   <script src="assets/js/landing.js"></script>
+  <!-- Asembly Page JS -->
+  <script src="assets/js/assembly.js"></script>
   <!-- AJA JS Source -->
   <script src="assets/js/aja.min.js"></script>
   <!-- Chart.js CDN -->
