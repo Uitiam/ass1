@@ -60,9 +60,12 @@ class Manage extends Application {
 			$this->manageModel->reboot();
 			$result = file_get_contents($url);
 
+			$result = explode(" ", $result);
+			$this->company->setApiKey($result[1]);
+			
 			return $this->output
 	            ->set_content_type('application/json')
-	            ->set_output(json_encode(array('msg'=>$result)));
+	            ->set_output(json_encode(array('msg'=>$result[1])));
 		}
 	}
 
