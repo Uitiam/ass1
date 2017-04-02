@@ -8,7 +8,6 @@ class Parts extends Application
     function __construct()
     {
         parent::__construct();
-        session_start();
     }
 
     /**
@@ -33,28 +32,17 @@ class Parts extends Application
     }
 
     private function getKey() {
-        $pass = $this->db->query('SELECT * FROM Company')->result_array();
-        if (empty($pass) || empty($pass[0]['accessToken'])) {
-            return -1;
-        }
-        return $pass[0]['accessToken'];
+        return $this->company->apiKey();
     }
 
     private function makeRequest($url) {
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        $response = curl_exec($ch);
-        curl_close($ch);
-        return $response;
+        return file_get_contents($url);
     }
 
     public function build() {
         $this->output->set_content_type('application/json');
         $key = $this->getKey();
-        if ($key == -1) {
+        if ($key == false) {
             return $this->output
                         ->set_content_type('application/json')
                         ->set_output(json_encode(array(
@@ -101,6 +89,7 @@ class Parts extends Application
                 $this->history->addSell($id, $model, $autoId, 0);
             }
         }
+        $this->company->set('balance', $this->company->get('balance') - 100);
         return $this->output
                     ->set_content_type('application/json')
                     ->set_output(json_encode(array(
@@ -111,7 +100,7 @@ class Parts extends Application
     public function buy() {
         $this->output->set_content_type('application/json');
         $key = $this->getKey();
-        if ($key == -1) {
+        if ($key == false) {
             return $this->output
                         ->set_content_type('application/json')
                         ->set_output(json_encode(array(
@@ -157,6 +146,7 @@ class Parts extends Application
                 $this->history->addBuy($model, $autoId, 10, "Worker", $id);
             }
         }
+        $this->company->set('balance', $this->company->get('balance') - 100);
         return $this->output
                     ->set_content_type('application/json')
                     ->set_output(json_encode(array(
