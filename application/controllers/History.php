@@ -34,7 +34,6 @@ class History extends Application
             $this->page['next'] = $total;
         }
 
-
         if($page > $total){
             $this->load->helper('url');
             redirect("/history/index/$total");
